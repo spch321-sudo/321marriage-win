@@ -1,0 +1,16 @@
+{
+  "name": "321 婚姻得勝者",
+  "short_name": "婚姻得勝者",
+  "description": "二人成為一體，同心操練無己，同作得勝者。國度321空中團契。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF6F1",
+  "theme_color": "#B0345A",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

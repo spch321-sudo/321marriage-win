@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#B0345A">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="321婚姻得勝者">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<title>321 婚姻得勝者 · 二人成為一體</title>
+<style>
+:root{
+  --rose:#B0345A; --rose-soft:#C0506E; --rose-tint:#F7E6EB;
+  --gold:#BF8F00; --gold-b:#E4B94B; --gold-tint:#FBF1D9;
+  --royal:#2E4A7D; --royal-tint:#E5ECF6;
+  --navy:#1F3864; --green:#3E7D5A; --green-tint:#E4F0E9;
+  --ink:#2B2730; --ink-soft:#6A636F; --muted:#98909C;
+  --cream:#FBF6F1; --card:#FFFFFF; --line:#ECE3DC;
+  --shadow:0 6px 22px rgba(120,60,80,.10);
+  --shadow-s:0 3px 12px rgba(120,60,80,.08);
+  --fdisplay:"Noto Serif CJK TC","Songti TC","PMingLiU",Georgia,serif;
+  --fbody:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{font-family:var(--fbody);background:var(--cream);color:var(--ink);
+  font-size:20px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+#app{max-width:480px;margin:0 auto;min-height:100vh;position:relative;background:var(--cream);
+  box-shadow:0 0 40px rgba(0,0,0,.06);}
+/* brand */
+#brand{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;
+  padding:calc(12px + env(safe-area-inset-top,0)) 18px 12px;
+  background:linear-gradient(180deg,#fff,#fffdfb);border-bottom:1px solid var(--line);}
+#brand .logo{width:34px;height:34px;border-radius:10px;flex:0 0 34px;
+  background:linear-gradient(150deg,var(--royal),var(--rose));position:relative;overflow:hidden;
+  box-shadow:inset 0 0 0 2px var(--gold-b);}
+#brand .logo b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:15px;font-weight:900;letter-spacing:.02em;}
+#brand .bt{flex:1;min-width:0;}
+#brand .bt h1{font-family:var(--fdisplay);font-size:21px;font-weight:900;color:var(--navy);letter-spacing:.02em;}
+#brand .bt p{font-size:13px;color:var(--rose);letter-spacing:.18em;margin-top:1px;}
+#brand .streak{flex:0 0 auto;font-size:14px;color:var(--gold);font-weight:800;
+  background:var(--gold-tint);border-radius:20px;padding:5px 11px;text-align:center;line-height:1.2;}
+#brand .streak b{font-size:18px;display:block;}
+/* screens */
+.screen{display:none;padding:16px 16px 96px;animation:fade .35s ease;}
+.screen.on{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:13px;letter-spacing:.34em;color:var(--gold);font-weight:800;text-transform:uppercase;margin:2px 0 8px;}
+.h-sec{font-family:var(--fdisplay);font-size:24px;font-weight:900;color:var(--navy);margin:22px 2px 10px;display:flex;align-items:center;gap:8px;}
+.h-sec::before{content:"";width:5px;height:19px;border-radius:3px;background:linear-gradient(var(--gold-b),var(--rose));}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow-s);margin-bottom:14px;}
+.card.pad0{padding:0;overflow:hidden;}
+.muted{color:var(--ink-soft);}
+.small{font-size:15px;}
+.center{text-align:center;}
+.btn{font-family:var(--fbody);font-weight:800;font-size:19px;letter-spacing:.04em;border:none;border-radius:14px;
+  padding:14px 20px;cursor:pointer;width:100%;color:#fff;background:linear-gradient(180deg,var(--rose-soft),var(--rose));
+  box-shadow:0 5px 14px rgba(176,52,90,.28);transition:transform .1s,filter .2s;}
+.btn:active{transform:translateY(2px);filter:brightness(.97);}
+.btn.gold{background:linear-gradient(180deg,var(--gold-b),var(--gold));color:#3a2a00;box-shadow:0 5px 14px rgba(191,143,0,.28);}
+.btn.royal{background:linear-gradient(180deg,#3d5a8f,var(--royal));box-shadow:0 5px 14px rgba(46,74,125,.28);}
+.btn.ghost{background:#fff;color:var(--rose);box-shadow:inset 0 0 0 1.6px var(--rose-tint);}
+.btn.sm{font-size:17px;padding:10px 14px;width:auto;display:inline-block;}
+.btn.block+.btn.block{margin-top:10px;}
+.row{display:flex;gap:10px;}
+.row>*{flex:1;}
+.tag{display:inline-block;font-size:14px;font-weight:800;padding:3px 10px;border-radius:20px;}
+.tag.rose{background:var(--rose-tint);color:var(--rose);}
+.tag.gold{background:var(--gold-tint);color:var(--gold);}
+.tag.royal{background:var(--royal-tint);color:var(--royal);}
+.tag.green{background:var(--green-tint);color:var(--green);}
+input,textarea{font-family:var(--fbody);font-size:19px;width:100%;border:1.6px solid var(--line);border-radius:12px;
+  padding:12px 14px;color:var(--ink);background:#fff;outline:none;}
+input:focus,textarea:focus{border-color:var(--rose-soft);}
+label.fld{display:block;font-size:15px;font-weight:700;color:var(--ink-soft);margin:12px 2px 5px;}
+/* verse card */
+.verse-card{position:relative;border-radius:20px;padding:22px 20px 18px;color:#fff;overflow:hidden;
+  background:linear-gradient(140deg,var(--royal),#6a3a6e 55%,var(--rose));box-shadow:var(--shadow);margin-bottom:16px;}
+.verse-card::after{content:"✦";position:absolute;top:12px;right:16px;color:var(--gold-b);opacity:.6;font-size:18px;}
+.verse-card .vlabel{font-size:13px;letter-spacing:.3em;color:var(--gold-b);font-weight:800;margin-bottom:10px;}
+.verse-card .vtext{font-family:var(--fdisplay);font-size:21px;line-height:1.95;}
+.verse-card .vref{margin-top:12px;font-size:15px;letter-spacing:.12em;color:var(--gold-b);font-weight:700;}
+.verse-card .vshare{margin-top:14px;}
+.vshare button{background:rgba(255,255,255,.16);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--fbody);}
+/* three-track meters */
+.tracks{display:flex;gap:8px;}
+.track{flex:1;text-align:center;}
+.ring{position:relative;width:100%;max-width:96px;margin:0 auto;}
+.ring svg{width:100%;height:auto;display:block;transform:rotate(-90deg);}
+.ring .rc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring .rv{font-family:var(--fdisplay);font-size:24px;font-weight:900;line-height:1;}
+.ring .rl{font-size:12px;color:var(--muted);margin-top:2px;}
+.track .tname{font-size:15px;font-weight:800;margin-top:7px;}
+.track .tlv{font-size:13px;color:var(--muted);}
+/* task list */
+.task{display:flex;align-items:center;gap:12px;padding:13px 4px;border-bottom:1px solid var(--line);}
+.task:last-child{border-bottom:none;}
+.task .ti{flex:1;min-width:0;}
+.task .ti b{display:block;font-size:18px;font-weight:700;}
+.task .ti span{font-size:15px;color:var(--ink-soft);}
+.chk{width:30px;height:30px;border-radius:9px;border:2px solid var(--line);background:#fff;flex:0 0 30px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:transparent;cursor:pointer;font-weight:900;transition:.15s;}
+.chk.on{background:var(--green);border-color:var(--green);color:#fff;}
+.chk.rose.on{background:var(--rose);border-color:var(--rose);}
+.chk.royal.on{background:var(--royal);border-color:var(--royal);}
+.who2{display:flex;gap:7px;flex:0 0 auto;}
+.who{width:40px;height:34px;border-radius:9px;border:2px solid var(--line);background:#fff;
+  font-size:15px;font-weight:800;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;}
+.who.h.on{background:var(--royal);border-color:var(--royal);color:#fff;}
+.who.w.on{background:var(--rose);border-color:var(--rose);color:#fff;}
+/* practice tabs */
+.subtabs{display:flex;gap:6px;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:5px;box-shadow:var(--shadow-s);}
+.subtabs button{flex:1;border:none;background:transparent;font-family:var(--fbody);font-weight:800;font-size:16px;
+  color:var(--ink-soft);padding:9px 4px;border-radius:10px;cursor:pointer;}
+.subtabs button.on{background:linear-gradient(180deg,var(--rose-soft),var(--rose));color:#fff;}
+.subview{display:none;}
+.subview.on{display:block;}
+/* bank */
+.bankstat{display:flex;gap:10px;margin-bottom:14px;}
+.bankstat .b{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;box-shadow:var(--shadow-s);}
+.bankstat .b b{font-family:var(--fdisplay);font-size:28px;color:var(--rose);display:block;}
+.bankstat .b span{font-size:13px;color:var(--muted);}
+.deprow{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:17px;}
+.deprow:last-child{border-bottom:none;}
+.deprow .amt{margin-left:auto;font-weight:900;color:var(--green);}
+/* battle */
+.pick{display:flex;gap:8px;margin:6px 0 4px;}
+.pick button{flex:1;border:2px solid var(--line);background:#fff;border-radius:12px;padding:11px 6px;
+  font-family:var(--fbody);font-weight:800;font-size:17px;cursor:pointer;color:var(--ink-soft);line-height:1.3;}
+.pick button.humble.on{border-color:var(--green);background:var(--green-tint);color:var(--green);}
+.pick button.pride.on{border-color:var(--rose);background:var(--rose-tint);color:var(--rose);}
+.result{border-radius:16px;padding:16px;margin-top:14px;text-align:center;font-size:18px;line-height:1.8;}
+.result.win{background:var(--gold-tint);border:1px solid var(--gold-b);}
+.result.lose{background:var(--rose-tint);border:1px solid var(--rose-soft);}
+.result.wait{background:var(--royal-tint);border:1px solid var(--royal);}
+.result b{font-family:var(--fdisplay);font-size:22px;display:block;margin-bottom:6px;}
+/* medals */
+.medals{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.medal{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;box-shadow:var(--shadow-s);}
+.medal.lock{opacity:.45;}
+.medal .mi{font-size:31px;}
+.medal b{display:block;font-size:15px;margin-top:4px;color:var(--navy);}
+.medal span{font-size:13px;color:var(--muted);}
+/* journey lands */
+.land{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:10px;box-shadow:var(--shadow-s);}
+.land .lnum{width:40px;height:40px;border-radius:12px;flex:0 0 40px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--fdisplay);font-weight:900;color:#fff;background:linear-gradient(150deg,var(--royal),var(--rose));font-size:20px;}
+.land .li{flex:1;}
+.land .li b{font-size:18px;color:var(--navy);}
+.land .li span{font-size:15px;color:var(--ink-soft);display:block;}
+.land .lk{font-size:21px;color:var(--muted);}
+/* covenant */
+.cov{background:linear-gradient(160deg,#fff,var(--gold-tint));border:2px solid var(--gold-b);border-radius:18px;padding:20px;text-align:center;box-shadow:var(--shadow);}
+.cov h3{font-family:var(--fdisplay);color:var(--rose);font-size:22px;margin-bottom:4px;}
+.cov .vow{font-family:var(--fdisplay);font-size:18px;line-height:1.9;color:var(--ink);margin:10px 0;white-space:pre-wrap;}
+/* bottom nav */
+#nav{position:fixed;left:0;right:0;bottom:0;z-index:40;max-width:480px;margin:0 auto;
+  display:flex;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0);box-shadow:0 -4px 18px rgba(0,0,0,.05);}
+#nav button{flex:1;border:none;background:transparent;padding:9px 2px 8px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-family:var(--fbody);}
+#nav button .ni{font-size:24px;line-height:1;}
+#nav button .nl{font-size:13px;font-weight:800;letter-spacing:.02em;}
+#nav button.on{color:var(--rose);}
+#nav button.on .ni{transform:translateY(-1px);}
+/* modal / toast */
+#toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);z-index:60;
+  background:var(--navy);color:#fff;padding:11px 20px;border-radius:24px;font-size:17px;font-weight:700;
+  opacity:0;transition:.3s;pointer-events:none;max-width:88%;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25);}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+.modal{position:fixed;inset:0;z-index:70;background:rgba(30,20,30,.55);display:none;align-items:center;justify-content:center;padding:24px;}
+.modal.on{display:flex;animation:fade .25s ease;}
+.modal .box{background:#fff;border-radius:20px;padding:24px;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.3);}
+.modal .box .mi{font-size:52px;}
+.modal .box h3{font-family:var(--fdisplay);font-size:25px;color:var(--rose);margin:8px 0 4px;}
+.modal .box p{font-size:17px;color:var(--ink-soft);line-height:1.8;margin-bottom:8px;}
+.modal .box .mverse{font-family:var(--fdisplay);font-size:17px;color:var(--gold);background:var(--gold-tint);border-radius:12px;padding:10px;margin:10px 0;}
+/* onboarding */
+#screen-onb{padding:28px 22px 40px;text-align:center;}
+#screen-onb .emb{width:96px;height:96px;margin:14px auto 8px;border-radius:24px;
+  background:linear-gradient(150deg,var(--royal),var(--rose));position:relative;box-shadow:inset 0 0 0 3px var(--gold-b),var(--shadow);}
+#screen-onb .emb b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--fdisplay);font-weight:900;font-size:31px;}
+#screen-onb h2{font-family:var(--fdisplay);font-size:31px;color:var(--navy);margin-top:6px;}
+#screen-onb .sub{color:var(--rose);font-size:17px;letter-spacing:.14em;margin:4px 0 2px;}
+.founded{font-size:14px;color:var(--muted);margin-top:22px;letter-spacing:.06em;}
+.spacer{height:8px;}
+.jbk{width:36px;height:36px;flex:0 0 36px;border-radius:11px;border:1.6px solid var(--line);background:#fff;color:var(--rose);font-size:24px;font-weight:900;cursor:pointer;line-height:1;}
+.chips{display:flex;flex-wrap:wrap;gap:7px;}
+.chip{border:1.6px solid var(--line);background:#fff;color:var(--ink-soft);border-radius:20px;padding:7px 14px;font-family:var(--fbody);font-size:16px;font-weight:800;cursor:pointer;}
+.chip.on{background:linear-gradient(180deg,#3d5a8f,var(--royal));color:#fff;border-color:var(--royal);}
+ul{margin:0;} li{margin-bottom:3px;}
+.card .btn.block{margin-bottom:0;} .card .btn.block+.btn.block{margin-top:10px;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== 品牌列 ===== -->
+  <div id="brand" style="display:none">
+    <div class="logo"><img src="icon-192.png" alt="321 婚姻得勝者" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    <div class="bt"><h1 id="brandName">婚姻得勝者</h1><p>二人成為一體 · 同作得勝</p></div>
+    <div class="streak"><b id="streakN">0</b>同心天</div>
+  </div>
+
+  <!-- ===== 上手 ===== -->
+  <div id="screen-onb" class="screen">
+    <div class="emb"><b>♥</b></div>
+    <div class="sub">國度 321 空中團契</div>
+    <h2>321 婚姻得勝者</h2>
+    <p class="muted small" style="margin:8px 0 2px">二人成為一體 · 無己合一的得勝之旅</p>
+    <div class="verse-card" style="margin-top:20px;text-align:left">
+      <div class="vtext" style="font-size:19px">「因此，人要離開父母，與妻子連合，二人成為一體。」</div>
+      <div class="vref">創世記 2:24</div>
+    </div>
+    <p class="small muted" style="margin:6px 4px 4px;text-align:left">先為你們這一對命名，開始每天一起操練無己、同心得勝。</p>
+    <label class="fld" style="text-align:left">丈夫的暱稱</label>
+    <input id="onbH" placeholder="例：志明" maxlength="12">
+    <label class="fld" style="text-align:left">妻子的暱稱</label>
+    <input id="onbW" placeholder="例：春嬌" maxlength="12">
+    <label class="fld" style="text-align:left">結婚 / 相愛紀念日（可略）</label>
+    <input id="onbAnniv" type="date">
+    <div class="spacer"></div><div class="spacer"></div>
+    <button class="btn gold" onclick="doOnboard()">開始我們的得勝之旅</button>
+    <div class="founded">三個基礎 · 兩個核心 · 一個目的</div>
+  </div>
+
+  <!-- ===== 今天 ===== -->
+  <div id="screen-today" class="screen"></div>
+  <!-- ===== 旅程 ===== -->
+  <div id="screen-journey" class="screen"></div>
+  <!-- ===== 操練 ===== -->
+  <div id="screen-practice" class="screen"></div>
+  <!-- ===== 得勝 ===== -->
+  <div id="screen-win" class="screen"></div>
+  <!-- ===== 我們 ===== -->
+  <div id="screen-us" class="screen"></div>
+  <!-- ===== 牧者後台 ===== -->
+  <div id="screen-pastor" class="screen"></div>
+
+  <!-- ===== 底部導覽 ===== -->
+  <div id="nav" style="display:none">
+    <button data-go="today" onclick="go('today')"><span class="ni">☀</span><span class="nl">今天</span></button>
+    <button data-go="journey" onclick="go('journey')"><span class="ni">🗺</span><span class="nl">旅程</span></button>
+    <button data-go="practice" onclick="go('practice')"><span class="ni">✿</span><span class="nl">操練</span></button>
+    <button data-go="win" onclick="go('win')"><span class="ni">♕</span><span class="nl">得勝</span></button>
+    <button data-go="us" onclick="go('us')"><span class="ni">♥</span><span class="nl">我們</span></button>
+  </div>
+
+  <div id="toast"></div>
+  <div id="modal" class="modal"><div class="box">
+    <div class="mi" id="mkIcon">✦</div>
+    <h3 id="mkTitle"></h3>
+    <p id="mkBody"></p>
+    <div class="mverse" id="mkVerse"></div>
+    <button class="btn gold" onclick="closeModal()">阿們</button>
+  </div></div>
+
+  <div id="sharemodal" class="modal"><div class="box">
+    <div class="mi">📤</div>
+    <h3 id="shTitle">分享</h3>
+    <textarea id="shBox" readonly style="width:100%;height:120px;font-size:15px;border:1.6px solid var(--line);border-radius:12px;padding:10px;margin:6px 0;color:var(--ink)"></textarea>
+    <div id="shNative"></div>
+    <button class="btn gold block" onclick="copyShare()">複製內容</button>
+    <button class="btn ghost block" style="margin-top:8px" onclick="closeShare()">關閉</button>
+    <p class="small muted" style="margin-top:8px">複製後可貼到 LINE、Messenger 或簡訊傳給對方。</p>
+  </div></div>
+
+  <div id="imgmodal" class="modal"><div class="box" style="max-height:92vh;overflow:auto">
+    <h3 id="imTitle">今日經文美圖</h3>
+    <img id="imImg" alt="經文美圖" style="width:100%;border-radius:12px;margin:8px 0;display:block">
+    <div id="imShare"></div>
+    <a id="imDl" class="btn ghost block" download="321-經文美圖.png" href="#">下載圖片</a>
+    <p class="small muted" style="margin:8px 0 0">長按圖片可直接分享到 LINE 等社群，或用上方按鈕。</p>
+    <button class="btn ghost block" style="margin-top:8px" onclick="closeImg()">關閉</button>
+  </div></div>
+
+  <div id="recmodal" class="modal"><div class="box" style="max-height:92vh;overflow:auto">
+    <h3>錄製語音影片</h3>
+    <canvas id="recCanvas" style="width:100%;border-radius:12px;margin:8px 0;display:block"></canvas>
+    <div id="recTime" style="font-weight:800;color:var(--rose);text-align:center">● 錄製中 00:00</div>
+    <p class="small muted" style="margin:6px 0">對著手機讀出經文或說出祝福，畫面就是這張美圖。</p>
+    <button id="bgmBtn" class="btn ghost block" onclick="toggleBgm()">🎵 背景音樂：開</button>
+    <button class="btn gold block" style="margin-top:8px" onclick="stopRec()">停止並產生影片</button>
+    <button class="btn ghost block" style="margin-top:8px" onclick="cancelRec()">取消</button>
+  </div></div>
+
+  <div id="vidmodal" class="modal"><div class="box" style="max-height:92vh;overflow:auto">
+    <h3>語音影片</h3>
+    <video id="vidVideo" controls playsinline style="width:100%;border-radius:12px;margin:8px 0;display:block;background:#000"></video>
+    <div id="vidShare"></div>
+    <a id="vidDl" class="btn ghost block" download="321-影片.mp4" href="#">下載影片</a>
+    <p class="small muted" style="margin:8px 0 0">長按影片可直接分享到 LINE 等社群，或用上方按鈕。</p>
+    <button class="btn ghost block" style="margin-top:8px" onclick="closeVid()">關閉</button>
+  </div></div>
+
+</div>
+<script>
+/* ===== 321 婚姻得勝者 · 資料庫（和合本繁體） ===== */
+
+/* 每日經文庫：婚姻・合一・無己主題 */
+var VERSES = [
+  ["因此，人要離開父母，與妻子連合，二人成為一體。", "創世記 2:24"],
+  ["三股合成的繩子不容易折斷。", "傳道書 4:12"],
+  ["兩個人總比一個人好，因為二人勞碌同得美好的果效。", "傳道書 4:9"],
+  ["愛是恆久忍耐，又有恩慈；愛是不嫉妒；愛是不自誇，不張狂。", "哥林多前書 13:4"],
+  ["不做害羞的事，不求自己的益處，不輕易發怒，不計算人的惡。", "哥林多前書 13:5"],
+  ["凡事包容，凡事相信，凡事盼望，凡事忍耐。", "哥林多前書 13:7"],
+  ["凡事謙虛、溫柔、忍耐，用愛心互相寬容。", "以弗所書 4:2"],
+  ["並要以恩慈相待，存憐憫的心，彼此饒恕，正如神在基督裡饒恕了你們一樣。", "以弗所書 4:32"],
+  ["又當存敬畏基督的心，彼此順服。", "以弗所書 5:21"],
+  ["你們作丈夫的，要愛你們的妻子，正如基督愛教會，為教會捨己。", "以弗所書 5:25"],
+  ["你們各人都當愛妻子，如同愛自己一樣。妻子也當敬重她的丈夫。", "以弗所書 5:33"],
+  ["生氣卻不要犯罪；不可含怒到日落。", "以弗所書 4:26"],
+  ["倘若這人與那人有嫌隙，總要彼此包容，彼此饒恕。", "歌羅西書 3:13"],
+  ["在這一切之外，要存著愛心，愛心就是聯絡全德的。", "歌羅西書 3:14"],
+  ["凡事不可結黨，不可貪圖虛浮的榮耀；只要存心謙卑，各人看別人比自己強。", "腓立比書 2:3"],
+  ["各人不要單顧自己的事，也要顧別人的事。", "腓立比書 2:4"],
+  ["愛弟兄，要彼此親熱；恭敬人，要彼此推讓。", "羅馬書 12:10"],
+  ["若是能行，總要盡力與眾人和睦。", "羅馬書 12:18"],
+  ["最要緊的是彼此切實相愛，因為愛能遮掩許多的罪。", "彼得前書 4:8"],
+  ["親愛的弟兄啊，我們應當彼此相愛，因為愛是從神來的。", "約翰一書 4:7"],
+  ["回答柔和，使怒消退；言語暴戾，觸動怒氣。", "箴言 15:1"],
+  ["設筵滿屋，大家相爭，不如有塊乾餅，大家相安。", "箴言 17:1"],
+  ["你們各人要快快地聽，慢慢地說，慢慢地動怒。", "雅各書 1:19"],
+  ["看哪，弟兄和睦同居是何等地善，何等地美！", "詩篇 133:1"],
+  ["聖靈所結的果子，就是仁愛、喜樂、和平、忍耐、恩慈、良善、信實、溫柔、節制。", "加拉太書 5:22-23"],
+  ["我賜給你們一條新命令，乃是叫你們彼此相愛；我怎樣愛你們，你們也要怎樣相愛。", "約翰福音 13:34"],
+  ["所以神配合的，人不可分開。", "馬可福音 10:9"],
+  ["才德的婦人誰能得著呢？她的價值遠勝過珍珠。", "箴言 31:10"],
+  ["愛情，眾水不能息滅，大水也不能淹沒。", "雅歌 8:7"],
+  ["你們該彼此勸慰，互相建立，正如你們素常所行的。", "帖撒羅尼迦前書 5:11"]
+];
+
+/* 夫妻 920：聖靈九果 × 對配偶的操練 */
+var TASK920 = [
+  ["仁愛", "今天主動對配偶說一句「我愛你，也謝謝你」，並看著他的眼睛。"],
+  ["仁愛", "為配偶做一件他沒開口、卻會窩心的小事。"],
+  ["喜樂", "分享今天一件讓你感恩的事，一起為它謝恩。"],
+  ["喜樂", "刻意讚美配偶一個優點，把焦點放在他的好上。"],
+  ["和平", "若有未解的心結，今天先放下對錯，主動釋出善意。"],
+  ["和平", "用「回答柔和」化解一個容易起火的時刻。"],
+  ["忍耐", "當配偶讓你不耐煩時，深呼吸、慢慢地說，不搶白。"],
+  ["忍耐", "對配偶重複的小毛病，今天選擇不嘮叨、多包容。"],
+  ["恩慈", "為配偶倒一杯水、備一份點心，用行動說恩慈。"],
+  ["恩慈", "主動分擔一件對方平常在做的家事。"],
+  ["良善", "在別人面前為配偶說一句好話、給他面子。"],
+  ["良善", "今天不翻舊帳，只記念配偶的好。"],
+  ["信實", "履行一個你曾答應卻還沒做的小承諾。"],
+  ["信實", "準時回家或主動報平安，讓配偶安心。"],
+  ["溫柔", "用溫柔的語氣提出一個需要，而不是要求或指責。"],
+  ["溫柔", "給配偶一個擁抱，並輕聲說一句鼓勵的話。"],
+  ["節制", "當想爭到底時，先克制自己，把主權交給主。"],
+  ["節制", "今天少滑手機，多留一段專心陪伴配偶的時間。"]
+];
+
+/* 六個每日親密操練 */
+var PRACTICES = [
+  ["dawn", "出門祝福", "分開前為對方與這一天禱告祝福", "\u2600"],
+  ["hold", "走路牽手", "以牽手表達同行，哪怕只是幾步路", "\uD83E\uDD1D"],
+  ["hug",  "回家擁抱", "用一個擁抱宣告「我為你回家」", "\uD83E\uDD17"],
+  ["talk", "每天談心", "用心傾聽對方，不評論、不急著解決", "\uD83D\uDCAC"],
+  ["pray", "睡前禱告", "把一天交託，彼此赦免、彼此祝福", "\uD83D\uDE4F"],
+  ["date", "每週約會", "留一段只屬於兩人的珍珠時刻", "\uD83C\uDF39"]
+];
+
+/* 魔王戰經文 */
+var BATTLE_VERSE = [
+  ["回答柔和，使怒消退。", "箴言 15:1"],
+  ["各人看別人比自己強。", "腓立比書 2:3"],
+  ["不可含怒到日落。", "以弗所書 4:26"],
+  ["用愛心互相寬容。", "以弗所書 4:2"],
+  ["彼此饒恕，正如神饒恕了你們。", "以弗所書 4:32"]
+];
+
+/* 得勝獎章 */
+var MEDALS = [
+  ["start",  "\uD83D\uDEA9", "啟程立約", "建立你們的得勝之旅"],
+  ["first",  "\u273F", "初結果子", "完成第一項夫妻 920"],
+  ["lens12", "\uD83D\uDC41", "觀點更新", "換上 12 種得勝的眼光"],
+  ["reborn", "\uD83C\uDF0A", "浴水重生", "走過生命之谷得新生命"],
+  ["life5",  "\uD83C\uDFE1", "活出無己", "在生活中操練得勝"],
+  ["topic7", "\uD83D\uDC8D", "七環得勝", "集齊七個得勝的金環"],
+  ["bank10", "\uD83C\uDFE6", "愛的存款", "累積 10 次愛的存款"],
+  ["humble", "\uD83D\uDD4A", "同心得勝", "以雙謙卑化解一次衝突"],
+  ["streak7","\uD83D\uDD25", "同心七日", "連續 7 天同心操練"],
+  ["land5",  "\u265B", "五地得勝", "點亮五重之地"],
+  ["one300", "\u2655", "二人一體", "合一值達到 300"]
+];
+
+/* 五重之地 */
+var LANDS = [
+  ["觀念之城", "觀念", "一起換上得勝的眼光，看見對方與衝突的真相", "lens"],
+  ["生命之谷", "生命", "認識舊人有己的根源，同得復活的新生命", "rebirth"],
+  ["生活之路", "生活", "把無己活進柴米油鹽，用心不用腦", "life"],
+  ["關係之橋", "關係", "七個得勝的金環，一環扣一環，環環相扣", "topics"],
+  ["使命之峰", "事工", "二人同心，成為別對夫妻的祝福，繁殖門訓", "mission"]
+];
+
+/* 觀念之城：換觀點 12 種眼光（名稱 / [情境,第一反應]多則 / 神的眼光 / 經文 / 今天可以怎麼做） */
+var LENSES = [
+  ["福音的眼光",
+    [["對方一再犯同樣的錯，我快受不了。","他就是改不了，我要定他的罪。"],
+     ["他忘了我交代的事，已經不是第一次。","講不聽，我懶得再說了。"],
+     ["我已經道歉了，他卻還在生氣。","我都低頭了，他還計較什麼。"],
+     ["他又把碗盤衣物隨手亂放。","每次都這樣，我氣到不想理他。"]],
+    "我也是蒙恩的罪人；福音讓我先饒恕，因為基督已先饒恕了我。",
+    "以恩慈相待，彼此饒恕，正如神饒恕了你們。（弗 4:32）",
+    "今天先饒恕對方一件事，因為基督已先饒恕了我；把想定罪的話收回來。"],
+  ["新人的眼光",
+    [["我覺得我們就是不合、改不了了。","江山易改，本性難移。"],
+     ["結婚這麼多年，他還是老樣子。","這輩子大概就這樣了。"],
+     ["我脾氣就是這樣，改不掉。","我天生急性子，別逼我。"],
+     ["我們一吵就是那幾個老問題。","反正每次都一樣，不會變的。"]],
+    "若有人在基督裡，他就是新造的人；我們都能在主裡被更新。",
+    "若有人在基督裡，他就是新造的人。（林後 5:17）",
+    "今天在快回到舊習慣時停一下，禱告「主幫助我做新人」，選一個新回應。"],
+  ["謙卑的眼光",
+    [["吵架時，我很想證明我是對的。","我要贏，我要他先認錯。"],
+     ["明明是他的錯，為什麼要我先低頭。","憑什麼每次都我讓步。"],
+     ["他當著別人的面反駁我。","太沒面子了，我一定要爭回來。"],
+     ["家裡的事我做最多，他還嫌。","我付出這麼多，他有資格說我嗎。"]],
+    "各人看別人比自己強；謙卑帶動謙卑，達到雙贏。",
+    "只要存心謙卑，各人看別人比自己強。（腓 2:3）",
+    "今天先開口說「你這點有道理」，把「我要贏」換成「我們雙贏」。"],
+  ["倚靠的眼光",
+    [["婚姻的難處好大，我不知怎麼辦。","我要靠自己的頭腦想辦法。"],
+     ["經濟壓力讓我喘不過氣。","都得我自己扛，沒人幫得上。"],
+     ["他生病了，我又急又慌。","全靠我撐，我快撐不住了。"],
+     ["孩子的問題讓我們焦頭爛額。","想破頭也想不出辦法。"]],
+    "用心靠聖靈，不用腦靠自己；把難處交託給神。",
+    "你要專心仰賴耶和華，不可倚靠自己的聰明。（箴 3:5）",
+    "今天把最煩的那件事寫下來、交託禱告，再靠聖靈走下一步。"],
+  ["定睛的眼光",
+    [["我一直盯著對方的缺點與自己的委屈。","焦點在他的錯，在我的不甘。"],
+     ["他今天又讓我失望了。","越看越不順眼。"],
+     ["別人的另一半好像都比較體貼。","一比較，心裡就不平衡。"],
+     ["他一個小動作就惹毛我。","我滿腦子都是他的不是。"]],
+    "焦點在耶穌不在人；定睛耶穌，心就安穩。",
+    "仰望為我們信心創始成終的耶穌。（來 12:2）",
+    "今天刻意數算對方三個好，把目光從缺點移回耶穌與恩典。"],
+  ["感恩的眼光",
+    [["覺得對方的付出理所當然。","這本來就是他該做的。"],
+     ["他每天上班養家，我習以為常。","賺錢不就是應該的。"],
+     ["她把家裡打理得好好的，我很少道謝。","顧家不都是這樣嗎。"],
+     ["他記得買我愛吃的東西回來。","我卻只顧著挑哪裡沒做好。"]],
+    "凡事謝恩，看見對方的每一份好都是恩典。",
+    "凡事謝恩，因為這是神的旨意。（帖前 5:18）",
+    "今天具體謝謝對方做的一件事，說出「你這樣做，我很感恩」。"],
+  ["次序的眼光",
+    [["忙到把配偶排在所有事情的最後。","等我忙完這些再說。"],
+     ["一回家就滑手機、追劇。","累了一天，讓我放空一下。"],
+     ["工作、孩子、應酬排滿，沒空給另一半。","這些都比較急啊。"],
+     ["寧可週末加班，也沒陪她。","賺錢也是為了這個家。"]],
+    "先求神的國，先與神、再與己、再與配偶——關係在事情之前。",
+    "你們要先求他的國和他的義。（太 6:33）",
+    "今天在忙事情之前，先留一段時間給神、也給對方。"],
+  ["愛人的眼光",
+    [["我付出這麼多，他卻都不懂。","我要先被愛、先被理解。"],
+     ["我一直在等他先對我好。","他不主動，我為什麼要主動。"],
+     ["每次都是我在為關係努力。","我累了，憑什麼一直是我。"],
+     ["他都不知道我要什麼。","要我講出來就沒意思了。"]],
+    "愛是不求自己的益處；配偶是我最近的『2』，先去愛。",
+    "愛是不求自己的益處。（林前 13:5）",
+    "今天主動先去愛，做一件對方需要、而非自己想做的事。"],
+  ["饒恕的眼光",
+    [["他上次傷我的那句話，我還記得。","我要記住，總有一天討回來。"],
+     ["一吵架，我就忍不住翻舊帳。","這些帳我記得清清楚楚。"],
+     ["他曾經深深傷過我。","我很難再完全信任他。"],
+     ["明明是他錯在先。","沒那麼容易就原諒他。"]],
+    "不計算人的惡，彼此饒恕，如同神饒恕了我們。",
+    "總要彼此包容，彼此饒恕。（西 3:13）",
+    "今天選一件放不下的事，在禱告中饒恕、決定不再翻舊帳。"],
+  ["團隊的眼光",
+    [["家事誰做得多，我心裡開始計較。","這是你的事，那是我的事。"],
+     ["孩子的教養，我們常各持己見。","我這套才對，你別插手。"],
+     ["錢該怎麼花，我們想法不同。","我的做法才合理。"],
+     ["遇到難處，我們各自為政。","你忙你的，我忙我的。"]],
+    "我們是一個團隊、一體，二人勞碌同得美好的果效。",
+    "兩個人總比一個人好。（傳 4:9）",
+    "今天用「我們」代替「你、我」，一起面對一件事、分工完成。"],
+  ["神國的眼光",
+    [["我們的家好平凡，有什麼意義。","不過就是過日子而已。"],
+     ["每天柴米油鹽，看不到亮點。","日子一天過一天罷了。"],
+     ["別人家事業有成，我們好普通。","我們這樣算什麼。"],
+     ["忙到忘了當初為什麼在一起。","就是搭夥過生活吧。"]],
+    "我們的家是神國在地上的領土；二人同心建立屬神的體系。",
+    "願你的國降臨，願你的旨意行在地上。（太 6:10）",
+    "今天為你們的家做一件榮耀神的小事，如一起謝飯或睡前禱告。"],
+  ["得勝的眼光",
+    [["我覺得我們的婚姻註定失敗。","我們就是失敗的一對。"],
+     ["吵到心灰意冷，真的好想放棄。","大概走不下去了。"],
+     ["同樣的問題一再重演。","我們永遠解不開這個結。"],
+     ["看不到希望，好想逃離。","是不是根本不適合。"]],
+    "靠著愛我們的主，在這一切的事上已經得勝有餘。",
+    "靠著愛我們的主，已經得勝有餘了。（羅 8:37）",
+    "今天不宣告失敗，改宣告「靠著愛我們的主，我們必得勝」。"]
+];
+
+/* 生命之谷：舊人→新人 四步 */
+var REBIRTH = [
+  ["認識舊人 · 有己是根源","舊人以自己為中心，凡事想照我的意思。有己是墮落的根源，驕傲是問題的根源。在婚姻裡，「有己」讓我們要作主、要贏、要對方順從我。","總要脫去你們從前行為上的舊人。（弗 4:22）","先誠實承認：我的「己」最常出現在＿＿。"],
+  ["十字架的死 · 舊人與主同釘","藉著耶穌的死，解決我們的罪性和罪行。我已經與基督同釘十字架——把我的「己」帶到十字架，讓它與主同死。","我已經與基督同釘十字架。（加 2:20）","願意把我的己交在十字架上。"],
+  ["復活的新生命 · 新生的樣式","藉著耶穌的復活，賜給我們新生命。一舉一動有新生的樣式；現在活著的不再是我，乃是基督在我裡面活。","一舉一動有新生的樣式。（羅 6:4）","領受基督在我裡面活的新生命。"],
+  ["無己合一 · 二人成為一體","無己不是沒有，乃是進入無限、活出無限。當二人都無己，讓耶穌在裡面作王，才能真正二人成為一體。","二人成為一體。（創 2:24）","我們願意一同無己，讓耶穌作王。"]
+];
+
+/* 生活之路：活出無己 五個生活操練 */
+var LIFE = [
+  ["用心不用腦","心裡好煩、好焦慮的時候。","用心靠聖靈就開心，用腦靠自己就煩惱。一生的果效是由心發出。","你要保守你心，勝過保守一切。（箴 4:23）"],
+  ["焦點在耶穌","環境一團亂，兩人都心浮氣躁。","焦點在耶穌不在環境；定睛耶穌，就有出人意外的平安。","堅心倚賴你的，你必保守他十分平安。（賽 26:3）"],
+  ["凡事謝恩","事情不如意，忍不住想抱怨。","凡事謝恩，把榮耀歸神，抱怨就變成讚美。","凡事謝恩，因為這是神的旨意。（帖前 5:18）"],
+  ["回答柔和","一句話讓你不太舒服，很想頂回去。","回答柔和使怒消退；快快地聽，慢慢地說，慢慢地動怒。","回答柔和，使怒消退。（箴 15:1）"],
+  ["讓耶穌作王","大事要做決定，兩人僵持不下。","無己讓耶穌作王；一起禱告尋求，讓主在凡事上居首位。","叫他凡事上居首位。（西 1:18）"]
+];
+
+/* 關係之橋：七個得勝的金環（謙卑無己為金線貫穿） */
+/* 每項：選擇對的X, 謙卑無己的X, 核心句, [真理回顧], 夫妻分享題, 落實原則, 經文 */
+var TOPICS = [
+  ["選擇對的生命","謙卑無己的生命","穿上新人謙卑無己的生命",
+    ["婚姻的根本在「生命」——舊人有己，新人無己。","有己是墮落與衝突的根源；謙卑無己是得勝的鑰匙。","焦點在耶穌，不在對方、不在環境。","脫去舊人，穿上照神形像所造的新人。"],
+    "我最常出現「有己」的時刻是什麼？我願如何穿上新人？",
+    "衝突時先問『我的己在哪裡』，選擇謙卑無己的生命。",
+    "並且穿上新人；這新人是照著神的形像造的。（弗 4:24）"],
+  ["選擇對的方向","謙卑無己的方向","落實 321 的理念，操練謙卑無己",
+    ["三個基礎：耶穌是榜樣、聖經是準則、聖靈是引導。","兩個核心：讓耶穌作王、讓耶穌得一切榮耀。","一個目的：建立屬神的體系——屬神的家。","321 的方向，就是謙卑無己、讓耶穌掌權。"],
+    "我們家的方向盤在誰手上？如何讓耶穌作王？",
+    "每天用 321 校準方向，讓耶穌在家中居首位。",
+    "使他凡事上居首位。（西 1:18）"],
+  ["選擇對的步驟","謙卑無己的步驟","用耶穌謙卑無己的生命，看、聽、想、講、行",
+    ["看：用耶穌的眼光看配偶，換上得勝的觀點。","聽：快快地聽，慢慢地說，慢慢地動怒。","想：看別人比自己強，凡事往好處想。","講：回答柔和；行：捨己去愛、以行動表達。"],
+    "看、聽、想、講、行，哪一步是我最需要操練的？",
+    "今天挑一步，刻意用耶穌謙卑無己的生命去做。",
+    "你們當以基督耶穌的心為心。（腓 2:5）"],
+  ["選擇對的連合","謙卑無己的連合","夫妻都用謙卑無己的生命成為一體",
+    ["二人成為一體的前提，是兩人「都無己」。","無己不是沒有，乃是進入無限、活出無限。","三軌合一：他無己、她無己，合一才躍升。","神所配合的，人不可分開。"],
+    "我們的「連合」目前卡在哪裡？誰願意先無己一步？",
+    "各自先無己一步，讓兩人真正連合為一體。",
+    "所以神配合的，人不可分開。（可 10:9）"],
+  ["選擇對的方法","謙卑無己的方法","五種愛的語言及愛的存款，活出謙卑無己",
+    ["五種愛語：肯定話語、精心時刻、接受禮物、服務行動、身體接觸。","辨識並使用「對方要的」愛語，而非自己習慣的。","愛的存款：存進對方的帳戶，不是自己的。","用謙卑無己的方法去愛——為對方，而非為自己。"],
+    "你最需要的愛語是哪一種？我要怎麼存進你的帳戶？",
+    "這一週，每天為對方存一筆「他要的」愛。",
+    "愛是不求自己的益處。（林前 13:5）"],
+  ["選擇對的修復","謙卑無己的修復","用謙卑無己解決衝突的方式，修復關係",
+    ["衝突源於兩個「有己」相碰。","謙卑三招：感謝付出 → 表示歉意 → 提出建議。","溝通三招：描述情境 → 述說感受 → 表達需求。","修復之路：認罪 → 饒恕 → 重新立約，先有一人回到本位。"],
+    "上一次的衝突，我可以怎麼用謙卑無己去修復？",
+    "下次起火，先用回答柔和與謙卑三招，主動修復。",
+    "並要以恩慈相待，存憐憫的心，彼此饒恕。（弗 4:32）"],
+  ["選擇對的委身","謙卑無己的委身","照著婚姻的盟約，彼此謙卑無己地委身守約",
+    ["婚姻是在神面前所立的盟約。","委身不憑一時感覺，乃憑盟約與意志。","浴水重生：把主權交還耶穌，守約到底。","彼此謙卑無己地委身，愛情如死之堅強。"],
+    "有什麼是我們需要重新委身、一起守約的？",
+    "一同禱告立約（可到『我們·立約殿』），照盟約謙卑委身。",
+    "愛情，眾水不能息滅，大水也不能淹沒。（歌 8:7）"]
+];
+
+/* 小家七次跟進聚會（牧者後台） */
+var FOLLOWUP = [
+  "第一次：預備心・彼此認識，分享參加的期待",
+  "第二次：回顧上週功課・幸福婚姻的理念",
+  "第三次：真理回顧・經營正向的婚姻（衝突與溝通）",
+  "第四次：小組分享・聖經中對性的看見",
+  "第五次：真理回顧・五種愛的語言與愛的存款",
+  "第六次：小組分享・珍珠時刻與彼此代禱",
+  "第七次：浴水重生・立約更新，差派成為別對夫妻的祝福"
+];
+
+/* 使命之峰：235 繁殖門訓 五步 [標題, 教導, 經文, 委身標籤] */
+var MISSION = [
+  ["得著異象 · 蒙福是為了成為祝福","你們的婚姻被神更新、蒙恩得勝，不是要停在自己這裡。神賜福給你們，是要你們成為別對夫妻的祝福，讓得勝的生命繁殖、擴張神的國。","你也要叫別人得福。（創 12:2）","領受這異象 \u2192"],
+  ["尋找你們的 2 · 屬靈同伴","主動尋找一對願意同行的夫妻，成為最親密的屬靈同伴。彼此坦誠、彼此代禱、一起操練無己——兩對總比一對更能站立得穩。","兩個人總比一個人好，因為二人勞碌同得美好的果效。（傳 4:9）","我們願意尋找同伴 \u2192"],
+  ["成為 3 的屬靈父母 · 以生命帶生命","以生命帶生命，陪伴一對較年輕或新婚的夫妻，成為他們婚姻裡的屬靈父母，把所領受的 321 與得勝之路傳承下去。","你在許多見證人面前聽見的，要交託那忠心能教導別人的人。（提後 2:2）","我們願意成為屬靈父母 \u2192"],
+  ["組成 5 的戰隊 · 五重職份的團隊","幾對夫妻同心組成得勝的戰隊，彼此扶持、發揮各自的恩賜與職份，一同在婚姻與家庭的爭戰中站立、得勝。","要竭力保守聖靈所賜、合而為一的心。（弗 4:3）","我們願意加入戰隊 \u2192"],
+  ["差派與繁殖 · 直到主再來","被主差派出去，複製這條謙卑無己的得勝之路，一對接一對、一家接一家，建立屬神的體系，迎接末後的大復興，直到主耶穌再來。","所以，你們要去，使萬民作我的門徒。（太 28:19）","我們願意被差派、去繁殖 \u265B"]
+];
+
+</script>
+<script>
+/* ===== 婚姻階段族群 · 專屬情境（每族群 12 個，涵蓋 12 種眼光） =====
+   [情境, 第一反應, 眼光索引, 今天可以怎麼做]
+   眼光索引 0福音 1新人 2謙卑 3倚靠 4定睛 5感恩 6次序 7愛人 8饒恕 9團隊 10神國 11得勝 */
+var STAGES = [
+  ["新婚","剛結婚・磨合期"],
+  ["育兒","養兒育女・忙碌期"],
+  ["空巢","兒女離家・重逢彼此"],
+  ["再婚","再婚・重組家庭"],
+  ["樂齡","銀髮・攜手到老"]
+];
+var STAGE_SCENES = {
+  "新婚": [
+    ["婚後才發現他的生活習慣跟我天差地遠。","怎麼跟我想的不一樣。",1,"今天挑一個生活差異，笑著說：我們各退一步，一起找個新做法。"],
+    ["公婆常來、界線好難拿捏。","到底該聽誰的？",6,"今天夫妻先私下對齊，再用「我們」的立場，一起溫和地回應長輩。"],
+    ["蜜月期一過，他好像沒那麼浪漫了。","他是不是變了、不愛我了。",5,"今天具體謝謝他做的一件小事：你這樣做，我很窩心。"],
+    ["第一次為了錢怎麼花而吵架。","我的用法才對。",2,"今天先放下誰對誰錯，一起列出這月收支，做一個都同意的小決定。"],
+    ["結了婚，他還是常跟朋友出去、冷落我。","結婚了還這樣。",7,"今天主動安排一段只屬於兩人的時間，也大方祝福他的友誼。"],
+    ["為了誰做家事，我們開始計較。","又不是只有我該做。",9,"今天一起把家事列出來分工寫下，並謝謝對方負責的部分。"],
+    ["他無心的一句話刺到我，我越想越氣。","他就是不在乎我的感受。",0,"今天選擇先饒恕，平靜地說：那句話讓我有點受傷，而不是冷戰。"],
+    ["新家的房貸和開銷，讓我壓力好大。","以後的日子怎麼過得下去。",3,"今天把壓力寫下來一起禱告交託，再列出下一步能做的一件事。"],
+    ["婚後我一直盯著他的小缺點看。","怎麼以前交往都沒發現。",4,"今天刻意找出他三個優點，說出其中一個給他聽。"],
+    ["交往時的一件舊事，我到現在還放不下。","當時真的很傷，我忘不了。",8,"今天在禱告中把那件舊事交給主，決定不再翻出來提。"],
+    ["婚禮的興奮過後，生活突然變得好現實。","婚姻好像沒想像中美好。",10,"今天一起回想結婚初衷，為你們的家做一件榮耀神的小事，如一起謝飯禱告。"],
+    ["才剛結婚就一直吵，我開始懷疑。","是不是根本不該結婚。",11,"今天不說「不該結婚」，改說：我們一起靠主學習，一定會更好。"]
+  ],
+  "育兒": [
+    ["有了孩子後，我們幾乎沒有兩人的時間。","等孩子大一點再說吧。",6,"今天孩子睡後，留 15 分鐘只跟對方聊天，不看手機。"],
+    ["教養方式不同，常當著孩子面爭執。","我這套才對，你別插手。",9,"今天不在孩子面前爭執，私下先達成共識，再一起面對孩子。"],
+    ["帶孩子累到崩潰，他卻好像狀況外。","都我一個人在扛。",3,"今天明確地說：我需要你幫我做這一件事，並一起禱告。"],
+    ["他下班只顧滑手機，不幫忙。","我也很累，憑什麼是我。",7,"今天主動做一件家務、不帶抱怨，也溫和說出你的需要。"],
+    ["孩子生病加上經濟壓力一起壓下來。","快撐不下去了。",4,"今天先一起安靜禱告，把焦點從難處轉向神，再處理最急的一件事。"],
+    ["整天圍著孩子轉，我快忘了我們是夫妻。","生活只剩柴米油鹽。",10,"今天為孩子和彼此做一次簡短的祝福禱告，記得你們是神所配的家。"],
+    ["我對孩子沒耐性，事後又很自責。","我真是個失敗的爸媽。",0,"今天接受自己會犯錯，向孩子和神認錯後重新來過，不定罪自己。"],
+    ["有了孩子後，我脾氣變得好差。","我大概就是這種爸媽了。",1,"今天在快發火時深呼吸，禱告一句「主幫助我」，操練新人的溫柔。"],
+    ["為了孩子的事，我們都堅持自己才對。","我才是真的為孩子好。",2,"今天先聽完對方的想法再說自己的，試著說：你這點有道理。"],
+    ["他默默扛起接送和家計，我卻視為理所當然。","這不是本來就該做的嗎。",5,"今天具體謝謝他扛起的那件事，讓他知道你看見了。"],
+    ["坐月子那段他讓我很失望，我一直記著。","那時候的委屈我忘不了。",8,"今天把那份委屈在禱告中交給主，選擇不再翻舊帳。"],
+    ["工作、孩子、婚姻多頭燒，我快撐不住。","這樣的日子看不到盡頭。",11,"今天列出一件「可以放下的事」，靠主承認：我不必樣樣完美。"]
+  ],
+  "空巢": [
+    ["孩子離家後，我們相對無言、好陌生。","原來我們早就沒話講了。",1,"今天主動開一個新話題，或一起做一件以前沒做過的小事。"],
+    ["他退休在家，我反而更煩躁。","他整天在，我沒了自己的空間。",9,"今天一起約定彼此的獨處與相處時間，尊重對方的空間。"],
+    ["空巢的家好安靜，我覺得好空虛。","接下來的日子還有什麼意義。",10,"今天一起想一件能祝福別人的事，如探訪或服事，讓空巢有新意義。"],
+    ["少了孩子這個話題，我們只剩抱怨。","越看越不順眼。",4,"今天刻意講一句欣賞對方的話，取代一句抱怨。"],
+    ["這些年為家犧牲，他好像都不記得。","我付出這麼多，值得嗎。",5,"今天回想並謝謝對方這些年的付出，也讓他看見你的犧牲。"],
+    ["想重新經營感情，卻拉不下臉先開口。","都幾十年了，還要我主動。",7,"今天放下面子，主動說：這些年辛苦你了，我們聊聊好嗎。"],
+    ["回想年輕時對他的虧欠，心裡有愧。","有些事我沒做好，很自責。",0,"今天在禱告中領受神的赦免，若合適，向對方誠實道個歉。"],
+    ["退休後為了家務、作息由誰主導又起爭執。","我這樣安排才對。",2,"今天先讓一步，問對方：你希望怎麼做，一起找出彼此安心的節奏。"],
+    ["面對老後的健康和經濟，我很不安。","以後的日子誰靠得住。",3,"今天一起把對未來的擔憂寫下、交託禱告，再談一個具體的安排。"],
+    ["孩子走了，我把重心全放在孫子或事情上。","夫妻的事以後再說吧。",6,"今天特意留一段只給老伴的時間，把夫妻關係擺回前面。"],
+    ["這些年累積的心結，一到空巢全浮上來。","以前那些帳還沒算呢。",8,"今天選一個心結，在禱告中饒恕，決定放下、不再算舊帳。"],
+    ["看著漸漸年老的彼此，覺得婚姻只剩慣性。","還能再重新愛嗎。",11,"今天做一件「重新追求」對方的小舉動，相信愛能被更新。"]
+  ],
+  "再婚": [
+    ["繼子女對我有距離，我很受傷。","我對他們再好也沒用。",7,"今天用不求回報的心，為繼子女做一件小小的好事。"],
+    ["前一段婚姻的陰影，讓我很難再信任。","會不會又重蹈覆轍。",1,"今天告訴自己「這是新的關係」，選擇給對方一個信任的機會。"],
+    ["忍不住拿現在的他跟前任比較。","以前那個至少會……。",4,"今天刻意數算現在這位配偶的三個好，停止比較。"],
+    ["為了孩子，還得跟前配偶往來，很煩。","為什麼還要跟他有牽扯。",8,"今天為著孩子的好處選擇饒恕，以平和的態度處理往來。"],
+    ["重組家庭的規矩喬不攏，天天摩擦。","這個家到底該聽誰的。",9,"今天夫妻先私下對齊，訂一條「我們這個家」都同意的規矩。"],
+    ["過去的傷，讓我常忍不住翻舊帳。","我就是忘不掉。",0,"今天把過去的傷交給主，領受福音的赦免，決定不再翻出來。"],
+    ["重組家庭裡，我總覺得該照我的方式來。","我的經驗才對，聽我的。",2,"今天先問：你的想法呢，願意接納對方的經驗與做法。"],
+    ["帶著各自的孩子重新生活，好多難題。","這麼複雜，我扛得住嗎。",3,"今天把最難的一題帶到禱告中，一起求神給智慧，別獨自硬扛。"],
+    ["他願意接納我和我的孩子，我卻常忘了感恩。","這不是應該的嗎。",5,"今天謝謝對方願意接納你和孩子，說出：有你真好。"],
+    ["忙著擺平兩邊的孩子和長輩，冷落了彼此。","先把這些搞定再說。",6,"今天在忙這些之前，先留一小段時間給彼此。"],
+    ["重組的家好複雜，我看不到盼望。","這個家能像個家嗎。",10,"今天一起為這個重組的家禱告，相信神能使它成為蒙福的家。"],
+    ["有過一次失敗，我很怕這次又走不下去。","我們真的能成功嗎。",11,"今天不宣告失敗，改宣告：靠主，我們這次要一起得勝。"]
+  ],
+  "樂齡": [
+    ["年紀大了，他的碎念和固執讓我不耐煩。","老了怎麼更難相處。",2,"今天用一句柔和的回應，取代不耐煩的口氣。"],
+    ["他生病需要長期照顧，我又累又怕。","這條路好長，我撐得住嗎。",3,"今天把照顧的重擔交託禱告，也讓家人或他人分擔一點。"],
+    ["退休後兩人整天相對，一點小事都能吵。","怎麼看怎麼不順眼。",4,"今天把焦點放在「還能相伴」的恩典上，一件小事就笑著讓過。"],
+    ["回顧這一生，心裡有些遺憾與虧欠。","有些事我一直放不下。",0,"今天領受神的赦免與醫治，把放不下的交給主。"],
+    ["孩子忙、少來看我們，只剩老伴相依。","老來作伴，也就這樣了吧。",10,"今天為能白頭偕老感恩，做一件讓老伴開心的小事。"],
+    ["想到有一天終須分離，就很捨不得、很怕。","以後一個人可怎麼辦。",11,"今天把懼怕交給主，珍惜眼前，說一句：有你這一生真好。"],
+    ["都這把年紀了，還能改變什麼呢。","老狗變不出新把戲了。",1,"今天嘗試一個小小的新改變，證明在主裡永遠可以更新。"],
+    ["老伴幾十年的陪伴，我漸漸視為理所當然。","都幾十年了，還用說謝謝嗎。",5,"今天特意謝謝老伴幾十年的陪伴，別把它當理所當然。"],
+    ["退休後，我把時間都給了嗜好、老友或服事。","陪伴以後有的是時間。",6,"今天在行程裡，特意留一段時間專心陪伴老伴。"],
+    ["年紀大了，愛在心裡口難開。","都老夫老妻了，還講那些做什麼。",7,"今天勇敢說出口：我愛你，謝謝你陪我到現在。"],
+    ["年輕時他犯的錯，我心底仍有疙瘩。","那道傷，這輩子難消。",8,"今天在禱告中把那道舊傷交給主，選擇真正的饒恕與釋放。"],
+    ["面對病痛與老後，我們卻常各自逞強。","我自己來就好，不麻煩你。",9,"今天練習說「我需要你」，讓對方有機會分擔、彼此扶持。"]
+  ]
+};
+
+</script>
+<script>
+/* ===== 321 婚姻得勝者 · 核心（嚴格 ES5，計分由紀錄推導） ===== */
+var KEY = "cw321v2";
+var OLDKEY = "cw321v1";
+var S = null;
+var CUR = "today";
+var bH = "", bW = "";
+
+/* ---------- 工具 ---------- */
+function $(id){ return document.getElementById(id); }
+function pad(n){ return n<10 ? "0"+n : ""+n; }
+function todayKey(){ var d=new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+function dstr(d){ return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+function ymd(s){ var p=s.split("-"); return new Date(+p[0],+p[1]-1,+p[2]); }
+function dayOfYear(){ var d=new Date(); return Math.floor((d-new Date(d.getFullYear(),0,0))/86400000); }
+function esc(s){ return (""+s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function uid(){ return Date.now().toString(36)+Math.floor(Math.random()*1e6).toString(36); }
+function countTrue(o){ var n=0,k; for(k in o){ if(o.hasOwnProperty(k)&&o[k]) n++; } return n; }
+
+function load(){ try{ S=JSON.parse(localStorage.getItem(KEY)); }catch(e){ S=null; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+function fresh(){
+  return { coupleId:uid(), h:"", w:"", anniv:"", _started:false,
+    days:{}, bank:[], battles:[],
+    lenses:{}, rebirth:0, life:{}, topics:{}, mission:false, missionStep:0, stage:"", stageDone:{},
+    todo:{}, notify:{on:false,hour:8,min:0,lastShown:""}, fontScale:"m", bgPhoto:"", bgMode:"color", bgm:true, musicStyle:"pad", showNames:true,
+    cov:{h:"",w:"",date:""}, medals:{},
+    score:{h:0,w:0,one:0}, streak:{n:0} }; }
+
+function day(){ var k=todayKey();
+  if(!S.days[k]) S.days[k]={ t920:{h:false,w:false}, prac:{} };
+  if(!S.days[k].t920) S.days[k].t920={h:false,w:false};
+  if(!S.days[k].prac) S.days[k].prac={};
+  return S.days[k]; }
+
+/* 由 v1 遷移 */
+function migrate(){
+  var old=null; try{ old=JSON.parse(localStorage.getItem(OLDKEY)); }catch(e){}
+  if(!old || !old.h) return false;
+  S=fresh(); S.h=old.h; S.w=old.w; S.anniv=old.anniv||""; S._started=true;
+  var k; if(old.days){ for(k in old.days){ if(old.days.hasOwnProperty(k)){
+    var d=old.days[k]; S.days[k]={ t920:{h:!!(d.t920&&d.t920.h),w:!!(d.t920&&d.t920.w)}, prac:d.prac||{} }; } } }
+  var i; if(old.bank){ for(i=0;i<old.bank.length;i++){ var b=old.bank[i]; S.bank.push({id:uid(),d:b.d,by:b.by,note:b.note}); } }
+  if(old.battles){ for(i=0;i<old.battles.length;i++){ var t=old.battles[i]; S.battles.push({id:uid(),d:t.d,h:t.h,w:t.w,out:t.out}); } }
+  if(old.cov) S.cov=old.cov;
+  save(); return true; }
+
+/* ---------- 計分：完全由紀錄推導 ---------- */
+function recompute(){
+  var h=0,w=0,one=0,k,i;
+  for(k in S.days){ if(!S.days.hasOwnProperty(k)) continue; var d=S.days[k];
+    if(d.t920&&d.t920.h) h+=10; if(d.t920&&d.t920.w) w+=10;
+    if(d.t920&&d.t920.h&&d.t920.w) one+=15;
+    if(d.prac){ var pk; for(pk in d.prac){ if(d.prac.hasOwnProperty(pk)&&d.prac[pk]) one+=5; } } }
+  one += 5*S.bank.length;
+  for(i=0;i<S.battles.length;i++){ if(S.battles[i].out=="win") one+=25; else if(S.battles[i].out=="lose") one-=10; }
+  var nL=countTrue(S.lenses), nLi=countTrue(S.life), nT=countTrue(S.topics), rs=S.rebirth||0;
+  one += 8*nL + 6*nLi + 12*nT + 8*rs + 6*(S.missionStep||0);
+  h += 2*nL + 2*nLi + 3*nT; w += 2*nL + 2*nLi + 3*nT;
+  if(rs>=4){ h+=20; w+=20; }
+  if(S.todo){ for(k in S.todo){ if(!S.todo.hasOwnProperty(k)) continue; var lst=S.todo[k];
+    for(i=0;i<lst.length;i++){ if(lst[i].done) one+=3; } } }
+  S.score={ h:Math.max(0,h), w:Math.max(0,w), one:Math.max(0,one) };
+  S.streak={ n:calcStreak() };
+}
+function activeOn(k){ var d=S.days[k], i;
+  if(d && ((d.t920&&(d.t920.h||d.t920.w)) || countTrue(d.prac))) return true;
+  for(i=0;i<S.bank.length;i++){ if(S.bank[i].d==k) return true; }
+  for(i=0;i<S.battles.length;i++){ if(S.battles[i].d==k) return true; }
+  if(S.todo && S.todo[k]){ for(i=0;i<S.todo[k].length;i++){ if(S.todo[k][i].done) return true; } }
+  return false; }
+function calcStreak(){
+  var cur=new Date(); var start=null;
+  if(activeOn(dstr(cur))) start=new Date(cur);
+  else { var y=new Date(cur); y.setDate(y.getDate()-1); if(activeOn(dstr(y))) start=y; }
+  if(!start) return 0;
+  var n=0, c=new Date(start);
+  while(activeOn(dstr(c))){ n++; c.setDate(c.getDate()-1); if(n>3660) break; }
+  return n; }
+
+/* 各地完成判定 */
+function landDone(type){
+  if(type=="lens") return countTrue(S.lenses)>=12;
+  if(type=="rebirth") return (S.rebirth||0)>=4;
+  if(type=="life") return countTrue(S.life)>=5;
+  if(type=="topics") return countTrue(S.topics)>=7;
+  if(type=="mission") return (S.missionStep||0)>=5 || !!S.mission;
+  return false; }
+function allLands(){ return landDone("lens")&&landDone("rebirth")&&landDone("life")&&landDone("topics")&&landDone("mission"); }
+function landOpen(idx){ if(idx===0) return true; return landDone(LANDS[idx-1][3]) || S.score.one >= idx*70; }
+
+/* ---------- 獎章（由條件推導） ---------- */
+var MEDAL_MSG = {
+  start:["\uD83D\uDEA9","啟程立約","願主耶穌在你們的婚姻裡作王，二人成為一體，同作得勝者。","二人成為一體。（創 2:24）"],
+  first:["\u273F","初結果子","無己讓耶穌在裡面活——你們已結出第一顆聖靈的果子！","聖靈所結的果子，就是仁愛。（加 5:22）"],
+  lens12:["\uD83D\uDC41","觀點更新","改變觀點就改變觀念——你們換上了 12 種得勝的眼光！","不要效法這個世界，只要心意更新而變化。（羅 12:2）"],
+  reborn:["\uD83C\uDF0A","浴水重生","舊人已與主同釘，你們同得復活的新生命！","現在活著的不再是我，乃是基督在我裡面活著。（加 2:20）"],
+  life5:["\uD83C\uDFE1","活出無己","把無己活進了生活——用心不用腦，凡事謝恩。","你要保守你心，勝過保守一切。（箴 4:23）"],
+  topic7:["\uD83D\uDC8D","七環得勝","七個得勝的金環全數扣上！謙卑無己，一環扣一環，靠耶穌一定贏。","三股合成的繩子不容易折斷。（傳 4:12）"],
+  bank10:["\uD83C\uDFE6","愛的存款","恆常的小事累積成堅固的愛，你們已存款十次！","愛能遮掩許多的罪。（彼前 4:8）"],
+  humble:["\uD83D\uDD4A","同心得勝","謙卑戰勝驕傲、謙卑帶動謙卑，你們達到了雙贏！","各人看別人比自己強。（腓 2:3）"],
+  streak7:["\uD83D\uDD25","同心七日","連續七天同心操練——這是二人一體的節奏！","三股合成的繩子不容易折斷。（傳 4:12）"],
+  land5:["\u265B","五地得勝","五重之地全數點亮！你們是二人同心的得勝者。","在這一切的事上已經得勝有餘了。（羅 8:37）"],
+  one300:["\u2655","二人一體","合一值突破 300！你們的家正成為神國得勝的領土。","所以神配合的，人不可分開。（可 10:9）"]
+};
+function anyF920(){ var k; for(k in S.days){ if(S.days[k].t920&&(S.days[k].t920.h||S.days[k].t920.w)) return true; } return false; }
+function anyWin(){ var i; for(i=0;i<S.battles.length;i++){ if(S.battles[i].out=="win") return true; } return false; }
+function grantMedals(celebrate){
+  var cond={ start:!!S._started, first:anyF920(), lens12:landDone("lens"), reborn:landDone("rebirth"),
+    life5:landDone("life"), topic7:landDone("topics"), bank10:S.bank.length>=10, humble:anyWin(),
+    streak7:S.streak.n>=7, land5:allLands(), one300:S.score.one>=300 };
+  var i,id; for(i=0;i<MEDALS.length;i++){ id=MEDALS[i][0];
+    if(cond[id] && !S.medals[id]){ S.medals[id]=true; if(celebrate && MEDAL_MSG[id]) pushModal(MEDAL_MSG[id]); } }
+}
+/* 統一：使用者操作後呼叫 */
+function commit(){ recompute(); grantMedals(true); save(); refreshBrand(); }
+
+/* ---------- 彈窗佇列 / 提示 ---------- */
+var MQ=[], _tt;
+function modalOpen(){ return $("modal").className.indexOf("on")>=0; }
+function pushModal(m){ MQ.push(m); if(!modalOpen()) showNext(); }
+function showNext(){ if(MQ.length){ var m=MQ.shift();
+  $("mkIcon").innerHTML=m[0]; $("mkTitle").innerHTML=esc(m[1]); $("mkBody").innerHTML=m[2];
+  $("mkVerse").innerHTML=m[3]?esc(m[3]):""; $("mkVerse").style.display=m[3]?"block":"none";
+  $("modal").className="modal on"; } }
+function modal(i,t,b,v){ pushModal([i,t,b,v]); }
+function closeModal(){ $("modal").className="modal"; setTimeout(showNext,180); }
+function toast(msg){ var t=$("toast"); t.innerHTML=esc(msg); t.className="on";
+  clearTimeout(_tt); _tt=setTimeout(function(){ t.className=""; },2200); }
+
+/* ---------- 導覽 ---------- */
+function go(id){ CUR=id;
+  var scr=document.getElementsByClassName("screen"),i;
+  for(i=0;i<scr.length;i++) scr[i].className="screen";
+  $("screen-"+id).className="screen on";
+  var nb=$("nav").getElementsByTagName("button");
+  for(i=0;i<nb.length;i++) nb[i].className=(nb[i].getAttribute("data-go")==id)?"on":"";
+  if(id=="today") renderToday();
+  else if(id=="journey") renderJourney();
+  else if(id=="practice") renderPractice();
+  else if(id=="win") renderWin();
+  else if(id=="us") renderUs();
+  else if(id=="pastor") renderPastor();
+  window.scrollTo(0,0); }
+function refreshBrand(){ $("brand").style.display="flex"; $("nav").style.display="flex";
+  $("brandName").innerHTML=esc(S.h)+" \u2665 "+esc(S.w); $("streakN").innerHTML=S.streak.n; }
+
+/* ---------- 環形進度 ---------- */
+function lv(v){ return Math.floor(v/100)+1; }
+function ring(val,color,name){
+  var C=263.9,pct=(val%100)/100,off=C*(1-pct);
+  return '<div class="track"><div class="ring"><svg viewBox="0 0 100 100">'+
+    '<circle cx="50" cy="50" r="42" fill="none" stroke="#EFE7E0" stroke-width="9"/>'+
+    '<circle cx="50" cy="50" r="42" fill="none" stroke="'+color+'" stroke-width="9" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+off+'"/></svg>'+
+    '<div class="rc"><div class="rv" style="color:'+color+'">'+val+'</div><div class="rl">Lv '+lv(val)+'</div></div></div>'+
+    '<div class="tname" style="color:'+color+'">'+name+'</div><div class="tlv">無己值</div></div>'; }
+function tracksHTML(){ return '<div class="tracks">'+ring(S.score.h,"#2E4A7D",esc(S.h))+
+  ring(S.score.one,"#BF8F00","合一")+ring(S.score.w,"#B0345A",esc(S.w))+'</div>'; }
+
+/* ---------- 今天 ---------- */
+function todaysVerse(){ return VERSES[dayOfYear()%VERSES.length]; }
+function renderToday(){
+  var v=todaysVerse(), d=day(), i, pracDone=0;
+  for(i=0;i<PRACTICES.length;i++){ if(d.prac[PRACTICES[i][0]]) pracDone++; }
+  var t=TASK920[dayOfYear()%TASK920.length], both=d.t920.h&&d.t920.w;
+  var html='<div class="eyebrow">今日 · '+todayKey()+'</div>';
+  html+='<div class="verse-card"><div class="vlabel">今日經文</div><div class="vtext">「'+v[0]+'」</div>'+
+    '<div class="vref">'+v[1]+'</div><div class="vshare"><button onclick="shareImage(\'verse\')">美圖分享 \u2726</button><button onclick="shareVerseText()" style="margin-left:8px">分享文字</button></div></div>';
+  html+='<div class="card"><div class="eyebrow" style="margin-bottom:12px">我們的得勝進度 · 三軌合一</div>'+tracksHTML()+
+    '<p class="small muted center" style="margin-top:12px">合一值唯有<strong style="color:#BF8F00">兩人同心</strong>時才會躍升——無己才能合一。</p></div>';
+  /* 今日行動 */
+  var aod=actionOfDay(), nOn=!!(S.notify&&S.notify.on);
+  html+='<div class="card" style="background:linear-gradient(140deg,#3E7D5A,#2E4A7D);color:#fff;border:none">'+
+    '<div class="eyebrow" style="color:#F0E9C0;margin-bottom:6px">今日行動 · 換觀點</div>'+
+    '<b style="font-family:var(--fdisplay);font-size:20px">'+aod[0]+'</b>'+
+    '<p style="font-size:18px;line-height:1.85;margin:6px 0 8px">\u2600 '+aod[1]+'</p>'+
+    '<div style="font-family:var(--fdisplay);font-size:15px;opacity:.9">「'+aod[2]+'」</div>'+
+    '<button class="btn gold" style="margin-top:12px" onclick="addDayTodo()">加入今日實踐 \u2713</button>'+
+    '<button class="btn ghost" style="margin-top:8px" onclick="shareImage(\'action\')">美圖分享今日行動 \u2726</button>'+
+    '<div style="display:flex;align-items:center;gap:8px;margin-top:10px">'+
+    '<button class="btn '+(nOn?"gold":"ghost")+' sm" style="width:auto" onclick="toggleNotify()">\uD83D\uDD14 每日提醒：'+(nOn?"開":"關")+'</button>'+
+    (nOn?'<input type="time" value="'+pad(S.notify.hour)+':'+pad(S.notify.min)+'" onchange="setNotifyTime(this.value)" style="width:auto;padding:8px 10px;font-size:17px">':'')+
+    '</div></div>';
+  html+='<div class="h-sec">今日任務</div><div class="card">';
+  html+='<div class="task"><div class="ti"><b>夫妻 920 · '+t[0]+'</b><span>'+t[1]+'</span></div><div class="who2">'+
+    '<button class="who h'+(d.t920.h?" on":"")+'" onclick="toggle920(\'h\')">他</button>'+
+    '<button class="who w'+(d.t920.w?" on":"")+'" onclick="toggle920(\'w\')">她</button></div></div>';
+  html+='<div class="task" onclick="setSub(\'prac\');go(\'practice\')" style="cursor:pointer"><div class="ti"><b>六個每日親密操練</b><span>已完成 '+pracDone+' / 6　點此前往操練</span></div><div class="chk'+(pracDone==6?" on":"")+'">'+(pracDone==6?"\u2713":"\u203A")+'</div></div>';
+  var wk=weekBank();
+  html+='<div class="task" onclick="setSub(\'bank\');go(\'practice\')" style="cursor:pointer"><div class="ti"><b>愛的存款</b><span>本週已存 '+wk+' 次　點此記一筆</span></div><div class="chk rose'+(wk>0?" on":"")+'">'+(wk>0?"\u2713":"+")+'</div></div>';
+  html+='</div>';
+  /* 今日實踐清單 */
+  var td=S.todo[todayKey()]||[], dc=0, ti2;
+  for(ti2=0;ti2<td.length;ti2++){ if(td[ti2].done) dc++; }
+  html+='<div class="h-sec">今日實踐清單</div>';
+  if(td.length){ html+='<div class="card pad0" style="padding:6px 16px">';
+    for(ti2=0;ti2<td.length;ti2++){ var it=td[ti2];
+      html+='<div class="task"><div class="ti"><span style="font-size:17px'+(it.done?";text-decoration:line-through;color:var(--muted)":"")+'">'+esc(it.text)+'</span></div>'+
+        '<div class="chk'+(it.done?" on":"")+'" onclick="toggleTodo(\''+it.id+'\')">'+(it.done?"\u2713":"")+'</div></div>'; }
+    html+='</div><p class="small muted center">完成 '+dc+' / '+td.length+'　·　每完成一項 +3 合一值</p>'; }
+  else html+='<div class="card center muted small">還沒有實踐項目。從上面的「今日行動」，或「旅程」裡每個情境的「今天可以怎麼做」，把想做的加進來，一起打勾完成吧！</div>';
+  /* 旅程進度摘要 */
+  var lands=0,li; for(li=0;li<LANDS.length;li++){ if(landDone(LANDS[li][3])) lands++; }
+  html+='<div class="card" onclick="go(\'journey\')" style="cursor:pointer;background:linear-gradient(140deg,#2E4A7D,#5a4a8f);color:#fff;border:none">'+
+    '<div style="display:flex;align-items:center;gap:12px"><div style="font-size:31px">\uD83D\uDDFA</div>'+
+    '<div style="flex:1"><b style="font-size:18px">五重之地 · 得勝旅程</b><div style="font-size:15px;opacity:.85">已點亮 '+lands+' / 5 塊地　·　繼續闖關 \u203A</div></div></div></div>';
+  if(both) html+='<div class="card center" style="background:var(--gold-tint);border-color:var(--gold-b)"><b style="color:var(--gold);font-family:var(--fdisplay);font-size:19px">今天你們同心完成了 920 \u2665</b><p class="small muted" style="margin-top:4px">凡事謝恩，把榮耀歸給耶穌。</p></div>';
+  $("screen-today").innerHTML=html; }
+function toggle920(who){ var d=day(); d.t920[who]=!d.t920[who];
+  var both=d.t920.h&&d.t920.w; commit();
+  if(both) setTimeout(function(){ toast("同心完成 920！合一值 +15"); },140);
+  renderToday(); }
+
+/* ---------- 今日行動 · 實踐清單 · 每日提醒 ---------- */
+function actionOfDay(){ var Ln=LENSES[dayOfYear()%LENSES.length]; return [Ln[0], Ln[4], Ln[3]]; }
+function addTodo(text){ if(!text) return; var k=todayKey(); if(!S.todo[k]) S.todo[k]=[];
+  var i; for(i=0;i<S.todo[k].length;i++){ if(S.todo[k][i].text==text){ toast("這一項已在今日清單中"); return; } }
+  S.todo[k].push({ id:uid(), text:text, done:false }); save(); toast("已加入今日實踐清單 \u2713");
+  if(CUR=="today") renderToday(); }
+function addDayTodo(){ addTodo(actionOfDay()[1]); }
+function addLensTodo(i){ if(LENSES[i]&&LENSES[i][4]) addTodo(LENSES[i][4]); }
+function addSceneTodo(i){ if(S.stage&&STAGE_SCENES[S.stage]&&STAGE_SCENES[S.stage][i]) addTodo(STAGE_SCENES[S.stage][i][3]); }
+function toggleTodo(id){ var k=todayKey(), lst=S.todo[k]||[], i;
+  for(i=0;i<lst.length;i++){ if(lst[i].id==id){ lst[i].done=!lst[i].done; break; } }
+  commit(); if(CUR=="today") renderToday(); }
+function toggleNotify(){ if(S.notify&&S.notify.on){ S.notify.on=false; save(); toast("已關閉每日提醒"); renderToday(); return; }
+  if(!("Notification" in window)){ toast("此裝置不支援通知"); return; }
+  Notification.requestPermission().then(function(perm){
+    if(perm=="granted"){ S.notify.on=true; S.notify.lastShown=""; save(); toast("每日行動提醒已開啟"); fireNotify(true); renderToday(); }
+    else toast("請到系統設定允許此網站的通知"); }); }
+function setNotifyTime(v){ if(!v) return; var p=v.split(":"); S.notify.hour=parseInt(p[0],10)||0; S.notify.min=parseInt(p[1],10)||0; S.notify.lastShown=""; save(); toast("提醒時間已設為 "+v); renderToday(); }
+function fireNotify(force){ if(!S.notify) return; var k=todayKey(); if(!force && S.notify.lastShown==k) return;
+  var a=actionOfDay(), body="今日行動（"+a[0]+"）："+a[1];
+  try{
+    if(navigator.serviceWorker && navigator.serviceWorker.ready && navigator.serviceWorker.ready.then){
+      navigator.serviceWorker.ready.then(function(reg){ if(reg&&reg.showNotification) reg.showNotification("321 婚姻得勝者 · 今日行動",{ body:body, icon:"icon-192.png", badge:"icon-192.png", tag:"cw321-daily" }); }); }
+    else if(("Notification" in window) && Notification.permission=="granted"){ new Notification("321 婚姻得勝者 · 今日行動",{ body:body, icon:"icon-192.png" }); }
+    S.notify.lastShown=k; save();
+  }catch(e){} }
+function checkNotify(){ if(!S||!S.notify||!S.notify.on) return; var now=new Date();
+  var tg=new Date(); tg.setHours(S.notify.hour||8, S.notify.min||0, 0, 0);
+  if(now>=tg && S.notify.lastShown!=todayKey()) fireNotify(false); }
+
+/* ---------- 字級調整（小/中/大） ---------- */
+function applyFont(){ var s=(S&&S.fontScale)||"m"; var z=(s=="l")?1.16:((s=="s")?0.9:1);
+  var w=Math.round(480/z)+"px";
+  var el=$("app"); if(el){ el.style.zoom=z; el.style.maxWidth=w; }
+  var nv=$("nav"); if(nv){ nv.style.zoom=z; nv.style.maxWidth=w; } }
+function setFont(s){ if(S){ S.fontScale=s; save(); } applyFont(); if(CUR=="us") renderUs(); toast("字級已設為"+(s=="l"?"大":(s=="s"?"小":"中"))); }
+
+</script>
+<script>
+/* ===== 321 婚姻得勝者 · 核心續（操練/得勝/啟動） ===== */
+/* ---------- 操練 ---------- */
+var SUB="p920";
+function setSub(x){ SUB=x; if(CUR=="practice") renderPractice(); }
+function renderPractice(){
+  var d=day(),html='<div class="eyebrow">每天可玩的功夫 · 活出無己</div>';
+  html+='<div class="subtabs">'+
+    '<button class="'+(SUB=="p920"?"on":"")+'" onclick="setSub(\'p920\')">夫妻920</button>'+
+    '<button class="'+(SUB=="prac"?"on":"")+'" onclick="setSub(\'prac\')">六個操練</button>'+
+    '<button class="'+(SUB=="bank"?"on":"")+'" onclick="setSub(\'bank\')">愛的存款</button></div>';
+  html+='<div class="subview'+(SUB=="p920"?" on":"")+'">';
+  var t=TASK920[dayOfYear()%TASK920.length];
+  html+='<div class="card"><span class="tag rose">聖靈的果子 · '+t[0]+'</span><p style="font-size:20px;line-height:1.8;margin:10px 0 4px">'+t[1]+'</p>'+
+    '<p class="small muted">配偶是你最親密的「2」——操練活出無己（0），結出聖靈的果子（9）。</p><div class="row" style="margin-top:14px">'+
+    '<button class="btn '+(d.t920.h?"royal":"ghost")+'" onclick="toggle920(\'h\')">'+esc(S.h)+(d.t920.h?" \u2713":"")+'</button>'+
+    '<button class="btn '+(d.t920.w?"":"ghost")+'" onclick="toggle920(\'w\')">'+esc(S.w)+(d.t920.w?" \u2713":"")+'</button></div></div>';
+  html+='<p class="small muted center">每人完成 +10 無己值　·　兩人同心再 +15 合一值</p></div>';
+  html+='<div class="subview'+(SUB=="prac"?" on":"")+'"><div class="card pad0" style="padding:6px 16px">';
+  var i; for(i=0;i<PRACTICES.length;i++){ var p=PRACTICES[i],on=!!d.prac[p[0]];
+    html+='<div class="task"><div class="ti"><b>'+p[3]+' '+p[1]+'</b><span>'+p[2]+'</span></div><div class="chk'+(on?" on":"")+'" onclick="togglePrac(\''+p[0]+'\')">'+(on?"\u2713":"")+'</div></div>'; }
+  html+='</div><p class="small muted center">每完成一項 +5 合一值。</p></div>';
+  html+='<div class="subview'+(SUB=="bank"?" on":"")+'">';
+  html+='<div class="bankstat"><div class="b"><b>'+weekBank()+'</b><span>本週存款</span></div><div class="b"><b>'+S.bank.length+'</b><span>累積存款</span></div></div>';
+  html+='<div class="card"><label class="fld">記一筆愛的存款（一句好話、一個貼心舉動）</label><input id="depNote" placeholder="例：謝謝你今天早起做早餐" maxlength="40"><div class="row" style="margin-top:12px">'+
+    '<button class="btn royal" onclick="addDep(\'h\')">'+esc(S.h)+' 存款</button><button class="btn" onclick="addDep(\'w\')">'+esc(S.w)+' 存款</button></div></div>';
+  if(S.bank.length){ html+='<div class="card"><div class="eyebrow" style="margin-bottom:6px">最近的存款</div>';
+    var n=Math.min(S.bank.length,8),b; for(i=S.bank.length-1;i>=S.bank.length-n;i--){ b=S.bank[i];
+      html+='<div class="deprow"><span class="tag '+(b.by=="h"?"royal":"rose")+'">'+esc(b.by=="h"?S.h:S.w)+'</span><span>'+esc(b.note)+'</span><span class="amt">+5</span></div>'; }
+    html+='</div>'; }
+  else html+='<div class="card center muted small">還沒有存款。愛，就從記下第一筆貼心開始。</div>';
+  html+='</div>';
+  $("screen-practice").innerHTML=html; }
+function togglePrac(k){ var d=day(); d.prac[k]=!d.prac[k]; commit(); renderPractice(); }
+function weekBank(){ var now=new Date(),c=0,i; for(i=0;i<S.bank.length;i++){ if((now-ymd(S.bank[i].d))<7*86400000) c++; } return c; }
+function addDep(by){ var el=$("depNote"),note=el?el.value.replace(/\s+$/,""):"";
+  if(!note){ toast("請先寫下這筆愛的存款"); return; }
+  S.bank.push({ id:uid(), d:todayKey(), by:by, note:note }); commit();
+  toast("已存入愛的存款 \u2665 合一值 +5"); renderPractice(); }
+
+/* ---------- 得勝：魔王戰 + 獎章 ---------- */
+function renderWin(){
+  var html='<div class="eyebrow">謙卑戰勝驕傲 · 同心對抗共同的敵人</div>';
+  html+='<div class="card"><h3 style="font-family:var(--fdisplay);color:var(--navy);font-size:21px;margin-bottom:6px">衝突魔王戰</h3>'+
+    '<p class="small muted">當你們起了爭執，別彼此對戰——一起面對真正的敵人「<b style="color:var(--rose)">驕傲</b>」。各自安靜，領受經文，再各自選擇：回到本位（謙卑），還是抓住權力（驕傲）？</p>';
+  var bv=BATTLE_VERSE[S.battles.length%BATTLE_VERSE.length];
+  html+='<div class="mverse" style="margin:12px 0;font-family:var(--fdisplay);color:var(--gold);background:var(--gold-tint);border-radius:12px;padding:10px;text-align:center">「'+bv[0]+'」— '+bv[1]+'</div>';
+  html+='<p class="small" style="font-weight:800;color:var(--royal);margin-top:6px">'+esc(S.h)+' 的選擇</p><div class="pick">'+
+    '<button class="humble'+(bH=="h"?" on":"")+'" onclick="pick(\'H\',\'h\')">謙卑 · 回到本位</button>'+
+    '<button class="pride'+(bH=="p"?" on":"")+'" onclick="pick(\'H\',\'p\')">驕傲 · 抓住權力</button></div>';
+  html+='<p class="small" style="font-weight:800;color:var(--rose);margin-top:10px">'+esc(S.w)+' 的選擇</p><div class="pick">'+
+    '<button class="humble'+(bW=="h"?" on":"")+'" onclick="pick(\'W\',\'h\')">謙卑 · 回到本位</button>'+
+    '<button class="pride'+(bW=="p"?" on":"")+'" onclick="pick(\'W\',\'p\')">驕傲 · 抓住權力</button></div>';
+  html+='<button class="btn gold" style="margin-top:14px" onclick="resolveBattle()">看見結局</button><div id="battleResult"></div></div>';
+  html+='<div class="h-sec">得勝獎章牆</div><div class="medals">';
+  var i; for(i=0;i<MEDALS.length;i++){ var m=MEDALS[i],got=!!S.medals[m[0]];
+    html+='<div class="medal'+(got?"":" lock")+'"><div class="mi">'+m[1]+'</div><b>'+m[2]+'</b><span>'+m[3]+'</span></div>'; }
+  html+='</div>';
+  $("screen-win").innerHTML=html; }
+function pick(side,val){ if(side=="H") bH=val; else bW=val; renderWin(); }
+function resolveBattle(){ if(!bH||!bW){ toast("請兩人都先做出選擇"); return; }
+  var out,box=$("battleResult")||{};
+  if(bH=="h"&&bW=="h"){ out="win";
+    box.innerHTML='<div class="result win"><b>雙贏 · 同心得勝 \u265B</b>謙卑帶動謙卑、謙卑對謙卑，達到雙贏！合一值 +25。<br><span class="small muted">凡事謝恩，把榮耀歸給耶穌。</span></div>'; }
+  else if(bH=="p"&&bW=="p"){ out="lose";
+    box.innerHTML='<div class="result lose"><b>兩敗俱傷</b>驕傲激起驕傲、驕傲對抗驕傲，兩敗俱傷。合一值 -10。<br><span class="small muted">走上復和之路：認罪 → 饒恕 → 重新立約。先有一人願意回到本位。</span></div>'; }
+  else { out="wait";
+    box.innerHTML='<div class="result wait"><b>以柔克剛</b>一方先捨己、回到本位，就為對方留下轉圜的空間。<br><span class="small muted">謙卑是放下權力、回到本位——讓人作人，讓神作神。</span></div>'; }
+  S.battles.push({ id:uid(), d:todayKey(), h:bH, w:bW, out:out }); bH=""; bW=""; commit(); }
+
+/* ---------- 分享經文 ---------- */
+function shareVerse(){ var v=todaysVerse(),msg="「"+v[0]+"」— "+v[1]+"（來自 321 婚姻得勝者）";
+  if(navigator.share) navigator.share({title:"今日經文",text:msg})["catch"](function(){}); else copyText(msg); }
+function copyText(txt){ try{ var ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta);
+  ta.select(); document.execCommand("copy"); document.body.removeChild(ta); toast("已複製，可貼給對方或記事本保存"); }
+  catch(e){ prompt("複製以下內容：", txt); } }
+
+/* ---------- 上手 ---------- */
+function doOnboard(){ var h=$("onbH").value.replace(/\s/g,"")||"丈夫", w=$("onbW").value.replace(/\s/g,"")||"妻子";
+  S=fresh(); S.h=h; S.w=w; S.anniv=$("onbAnniv").value||""; S._started=true;
+  commit(); go("today"); }
+
+/* ---------- 啟動 ---------- */
+function boot(){ load();
+  if(!S){ if(!migrate()){ S=fresh(); } }
+  if(S){ if(S.stage==null) S.stage=""; if(!S.stageDone) S.stageDone={};
+    if(!S.todo) S.todo={}; if(!S.notify) S.notify={on:false,hour:8,min:0,lastShown:""};
+    if(S.missionStep==null) S.missionStep=0; if(!S.fontScale) S.fontScale="m";
+    if(S.bgMode==null) S.bgMode="color"; if(S.bgm==null) S.bgm=true;
+    if(!S.musicStyle) S.musicStyle="pad"; if(S.showNames==null) S.showNames=true;
+    if(S.bgPhoto && typeof loadBg=="function") loadBg(S.bgPhoto); }
+  applyFont();
+  if(!S.h){ $("brand").style.display="none"; $("nav").style.display="none"; $("screen-onb").className="screen on"; }
+  else { recompute(); grantMedals(false); save(); refreshBrand(); go("today"); }
+  if("serviceWorker" in navigator){ try{ navigator.serviceWorker.register("sw.js"); }catch(e){} }
+  try{ checkNotify(); if(window.__cwNI) clearInterval(window.__cwNI); window.__cwNI=setInterval(checkNotify,60000); }catch(e){} }
+
+</script>
+<script>
+/* ===== 旅程：五重之地完整闖關 ===== */
+var JV={ view:"map", idx:-1, rev:false };
+
+function jback(to){ JV.view=to||"map"; JV.idx=-1; JV.rev=false; renderJourney(); }
+function openLand(i){ if(!landOpen(i)){ toast("先完成前一塊地，或累積更多合一值來解鎖"); return; }
+  JV.view=LANDS[i][3]; JV.idx=-1; JV.rev=false; renderJourney(); }
+
+function progTag(done,total){ return '<span class="tag '+(done>=total?"green":"gold")+'">'+done+' / '+total+'</span>'; }
+function backBar(title,to){ return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'+
+  '<button class="jbk" onclick="jback(\''+(to||"map")+'\')">\u2039</button>'+
+  '<div style="font-family:var(--fdisplay);font-weight:900;color:var(--navy);font-size:22px">'+title+'</div></div>'; }
+
+function renderJourney(){
+  if(JV.view=="lens") return renderLens();
+  if(JV.view=="rebirth") return renderRebirth();
+  if(JV.view=="life") return renderLife();
+  if(JV.view=="topics") return renderTopics();
+  if(JV.view=="stage") return renderStage();
+  if(JV.view=="mission") return renderMission();
+  /* ---- 地圖 ---- */
+  var html='<div class="eyebrow">五重之地 · 由內而外的改變</div>';
+  html+='<div class="verse-card" style="background:linear-gradient(140deg,#2E4A7D,#5a4a8f)"><div class="vtext" style="font-size:19px">改變觀念就改變生命，改變生命就改變生活。<br>先生命、再關係、後事工。</div></div>';
+  var counts={ lens:[countTrue(S.lenses),12], rebirth:[Math.min(S.rebirth||0,4),4], life:[countTrue(S.life),5], topics:[countTrue(S.topics),7], mission:[S.mission?1:0,1] };
+  var i; for(i=0;i<LANDS.length;i++){ var L=LANDS[i],open=landOpen(i),done=landDone(L[3]),c=counts[L[3]];
+    html+='<div class="land" style="'+(open?"":"opacity:.55")+'" onclick="openLand('+i+')">'+
+      '<div class="lnum" style="'+(done?"background:linear-gradient(150deg,#BF8F00,#E4B94B)":"")+'">'+(done?"\u2713":(i+1))+'</div>'+
+      '<div class="li"><b>'+L[0]+'　<span style="font-weight:400;color:var(--muted);font-size:14px">'+L[1]+'</span></b>'+
+      '<span>'+L[2]+'</span><div style="margin-top:5px">'+progTag(c[0],c[1])+'</div></div>'+
+      '<div class="lk">'+(open?(done?"\u2605":"\u203A"):"\uD83D\uDD12")+'</div></div>'; }
+  if(allLands()) html+='<div class="cov" style="margin-top:6px"><h3>\u265B 你們是得勝者</h3><p class="small" style="color:var(--ink-soft)">五重之地全數點亮！由內而外，觀念、生命、生活、關係、事工都被更新。願你們同作得勝者，將來在神國與基督同坐寶座。</p><button class="btn gold" style="margin-top:12px" onclick="shareImage(\'cert\')">美圖分享得勝者證書 \u2726</button><button class="btn ghost" style="margin-top:8px" onclick="shareCert()">分享文字</button></div>';
+  $("screen-journey").innerHTML=html;
+}
+
+/* ---- 觀念之城：換觀點 12 眼光 ---- */
+function renderLens(){
+  var html=backBar("觀念之城 · 換觀點");
+  if(JV.idx<0){
+    html+='<p class="small muted" style="margin:0 2px 10px">從人的觀點，換成神的觀點；從地上，換成天上；從暫時，換成永恆。'+progTag(countTrue(S.lenses),12)+'</p>';
+    /* 婚姻階段選擇 */
+    var st=S.stage||"", i;
+    html+='<div class="card" style="padding:12px 14px"><div class="small" style="font-weight:800;color:var(--navy);margin-bottom:8px">你們的婚姻階段</div><div class="chips">';
+    html+='<button class="chip'+(st===""?" on":"")+'" onclick="setStage(\'\')">通用</button>';
+    for(i=0;i<STAGES.length;i++){ html+='<button class="chip'+(st===STAGES[i][0]?" on":"")+'" onclick="setStage(\''+STAGES[i][0]+'\')">'+STAGES[i][0]+'</button>'; }
+    html+='</div>';
+    if(st && STAGE_SCENES[st]){ var sc=STAGE_SCENES[st], sn=sc.length, dn=0,k;
+      for(k=0;k<sn;k++){ if(S.stageDone && S.stageDone[st+":"+k]) dn++; }
+      html+='<button class="btn gold block" style="margin-top:12px" onclick="openStage()">為【'+st+'】夫妻預備的情境（'+dn+' / '+sn+'）\u203A</button>'; }
+    html+='</div>';
+    html+='<div class="eyebrow" style="margin:2px 2px 8px">十二種得勝的眼光</div>';
+    for(i=0;i<LENSES.length;i++){ var done=!!S.lenses[i];
+      html+='<div class="land" onclick="openLens('+i+')"><div class="lnum" style="'+(done?"background:linear-gradient(150deg,#BF8F00,#E4B94B)":"background:linear-gradient(150deg,#2E4A7D,#5a4a8f)")+'">'+(done?"\u2713":"\uD83D\uDC41")+'</div>'+
+        '<div class="li"><b>'+LENSES[i][0]+'</b><span>'+(done?"已領受":"點此換上這眼光")+'</span></div><div class="lk">\u203A</div></div>'; }
+    $("screen-journey").innerHTML=html; return;
+  }
+  var Ln=LENSES[JV.idx], done=!!S.lenses[JV.idx], sits=Ln[1];
+  if(JV.sit==null || JV.sit>=sits.length) JV.sit=0;
+  var cur=sits[JV.sit];
+  html+='<div class="card"><div style="display:flex;align-items:center;gap:8px"><span class="tag royal">'+Ln[0]+'</span><span class="small muted" style="margin-left:auto">情境 '+(JV.sit+1)+' / '+sits.length+'</span></div>';
+  html+='<p style="font-size:19px;line-height:1.85;margin:12px 0 6px"><b style="color:var(--navy)">情境：</b>'+cur[0]+'</p>';
+  html+='<div style="background:var(--rose-tint);border-radius:12px;padding:12px;margin:8px 0"><b style="color:var(--rose);font-size:15px">你心裡的第一反應</b><p style="font-size:18px;margin-top:3px">'+cur[1]+'</p></div>';
+  html+='<button class="btn ghost sm" style="width:auto;padding:8px 14px" onclick="nextSit('+sits.length+')">\u21BB 換個情境</button>';
+  if(!JV.rev && !done){ html+='<button class="btn royal" style="margin-top:10px" onclick="JV.rev=true;renderJourney()">換上神的眼光 \uD83D\uDC41</button>'; }
+  else { html+='<div style="background:var(--gold-tint);border:1px solid var(--gold-b);border-radius:12px;padding:14px;margin:10px 0"><b style="color:var(--gold);font-size:15px">神的眼光</b><p style="font-size:19px;line-height:1.85;margin:4px 0 8px">'+Ln[2]+'</p><div style="font-family:var(--fdisplay);color:var(--navy);font-size:17px">「'+Ln[3]+'」</div></div>';
+    html+='<div style="background:var(--green-tint);border-radius:12px;padding:12px;margin:8px 0"><b style="color:var(--green);font-size:15px">\u2600 今天可以怎麼做</b><p style="font-size:18px;margin-top:3px">'+Ln[4]+'</p></div>';
+    html+='<button class="btn ghost" style="margin-bottom:10px" onclick="addLensTodo('+JV.idx+')">＋ 加入今日實踐</button>';
+    if(!done) html+='<button class="btn gold" onclick="doLens('+JV.idx+')">我願領受這眼光 \u2713</button>';
+    else html+='<div class="center"><span class="tag green">\u2713 已領受這眼光</span></div>'; }
+  html+='<button class="btn ghost" style="margin-top:10px" onclick="jback(\'lens\')">回眼光列表</button></div>';
+  $("screen-journey").innerHTML=html;
+}
+function nextSit(n){ JV.sit=((JV.sit==null?0:JV.sit)+1)%n; renderJourney(); }
+function openLens(i){ JV.idx=i; JV.rev=false; JV.sit=Math.floor(Math.random()*LENSES[i][1].length); renderJourney(); }
+function doLens(i){ S.lenses[i]=true; commit();
+  var nx=-1,j; for(j=0;j<12;j++){ if(!S.lenses[j]){ nx=j; break; } }
+  if(nx<0){ jback("lens"); toast("12 種眼光全數換上！"); }
+  else { toast("已領受 \u2713 合一值 +8"); JV.idx=nx; JV.rev=false; JV.sit=Math.floor(Math.random()*LENSES[nx][1].length); renderJourney(); } }
+
+/* ---- 婚姻階段專屬情境 ---- */
+function setStage(s){ S.stage=s; if(!S.stageDone) S.stageDone={}; save(); JV.idx=-1; JV.sidx=-1; renderJourney(); }
+function openStage(){ JV.view="stage"; JV.sidx=-1; JV.rev=false; renderJourney(); }
+function openScene(i){ JV.sidx=i; JV.rev=false; renderJourney(); }
+function renderStage(){
+  var st=S.stage, scenes=STAGE_SCENES[st]||[], html=backBar("【"+st+"】專屬情境","lens");
+  if(JV.sidx==null || JV.sidx<0){
+    html+='<p class="small muted" style="margin:0 2px 12px">這些是為你們這個階段預備的真實情境。點開，看見自己的第一反應，再一起換上神的眼光。</p>';
+    var i; for(i=0;i<scenes.length;i++){ var done=!!(S.stageDone&&S.stageDone[st+":"+i]), lensName=LENSES[scenes[i][2]][0];
+      html+='<div class="land" onclick="openScene('+i+')"><div class="lnum" style="'+(done?"background:linear-gradient(150deg,#BF8F00,#E4B94B)":"background:linear-gradient(150deg,#B0345A,#C0506E)")+'">'+(done?"\u2713":"\uD83D\uDCAC")+'</div>'+
+        '<div class="li"><b>'+scenes[i][0]+'</b><span>'+(done?("已領受 · "+lensName):"點此換上神的眼光")+'</span></div><div class="lk">\u203A</div></div>'; }
+    $("screen-journey").innerHTML=html; return;
+  }
+  var sc=scenes[JV.sidx], Ln=LENSES[sc[2]], done=!!(S.stageDone&&S.stageDone[st+":"+JV.sidx]);
+  html+='<div class="card"><span class="tag rose">'+st+' · 情境 '+(JV.sidx+1)+'</span>';
+  html+='<p style="font-size:19px;line-height:1.85;margin:12px 0 6px"><b style="color:var(--navy)">情境：</b>'+sc[0]+'</p>';
+  html+='<div style="background:var(--rose-tint);border-radius:12px;padding:12px;margin:8px 0"><b style="color:var(--rose);font-size:15px">你心裡的第一反應</b><p style="font-size:18px;margin-top:3px">'+sc[1]+'</p></div>';
+  if(!JV.rev && !done){ html+='<button class="btn royal" style="margin-top:8px" onclick="JV.rev=true;renderJourney()">換上神的眼光 \uD83D\uDC41</button>'; }
+  else { html+='<div style="background:var(--gold-tint);border:1px solid var(--gold-b);border-radius:12px;padding:14px;margin:10px 0"><b style="color:var(--gold);font-size:15px">神的眼光 · '+Ln[0]+'</b><p style="font-size:19px;line-height:1.85;margin:4px 0 8px">'+Ln[2]+'</p><div style="font-family:var(--fdisplay);color:var(--navy);font-size:17px">「'+Ln[3]+'」</div></div>';
+    html+='<div style="background:var(--green-tint);border-radius:12px;padding:12px;margin:8px 0"><b style="color:var(--green);font-size:15px">\u2600 今天可以怎麼做</b><p style="font-size:18px;margin-top:3px">'+sc[3]+'</p></div>';
+    html+='<button class="btn ghost" style="margin-bottom:10px" onclick="addSceneTodo('+JV.sidx+')">＋ 加入今日實踐</button>';
+    if(!done) html+='<button class="btn gold" onclick="doScene('+JV.sidx+')">我願換上這眼光 \u2713</button>';
+    else html+='<div class="center"><span class="tag green">\u2713 已領受</span></div>'; }
+  html+='<button class="btn ghost" style="margin-top:10px" onclick="openStage()">回情境列表</button></div>';
+  $("screen-journey").innerHTML=html;
+}
+function doScene(i){ var st=S.stage, sc=STAGE_SCENES[st][i];
+  if(!S.stageDone) S.stageDone={}; S.stageDone[st+":"+i]=true; S.lenses[sc[2]]=true; commit();
+  toast("已換上「"+LENSES[sc[2]][0]+"」\u2713"); JV.sidx=-1; JV.rev=false; renderJourney(); }
+
+/* ---- 生命之谷：舊人→新人 ---- */
+function renderRebirth(){
+  var step=S.rebirth||0, html=backBar("生命之谷 · 浴水重生");
+  if(step>=4){
+    html+='<div class="cov"><h3>\uD83C\uDF0A 浴水重生</h3><p class="vow">舊人已與主同釘十字架，\n現在活著的不再是我，\n乃是基督在我裡面活著。\n二人都無己，二人成為一體。</p><div class="center"><span class="tag green">\u2713 你們已走過生命之谷</span></div></div>';
+    html+='<div class="card"><div class="eyebrow" style="margin-bottom:8px">重溫四步</div>';
+    var i; for(i=0;i<REBIRTH.length;i++){ html+='<div class="deprow"><span class="tag royal">'+(i+1)+'</span><span>'+REBIRTH[i][0]+'</span></div>'; }
+    html+='</div>';
+    $("screen-journey").innerHTML=html; return;
+  }
+  var R=REBIRTH[step];
+  html+='<div class="card"><div class="center" style="margin-bottom:6px"><span class="tag royal">第 '+(step+1)+' 步 / 共 4 步</span></div>';
+  html+='<h3 style="font-family:var(--fdisplay);color:var(--rose);font-size:24px;text-align:center;margin:6px 0">'+R[0]+'</h3>';
+  html+='<p style="font-size:19px;line-height:1.9;margin:10px 0">'+R[1]+'</p>';
+  html+='<div style="font-family:var(--fdisplay);color:var(--navy);font-size:18px;background:var(--gold-tint);border-radius:12px;padding:12px;text-align:center;margin:10px 0">「'+R[2]+'」</div>';
+  html+='<p class="small" style="color:var(--rose);font-weight:700;text-align:center">'+R[3]+'</p>';
+  html+='<button class="btn gold" style="margin-top:12px" onclick="stepRebirth()">'+(step<3?"我願意，繼續前行 \u2192":"同得新生命，二人成為一體 \u2665")+'</button></div>';
+  html+='<p class="small muted center">一步一步，一同走過死與復活。</p>';
+  $("screen-journey").innerHTML=html;
+}
+function stepRebirth(){ S.rebirth=(S.rebirth||0)+1; commit();
+  if(S.rebirth>=4) toast("浴水重生，同得新生命！");
+  renderJourney(); window.scrollTo(0,0); }
+
+/* ---- 生活之路：活出無己 ---- */
+function renderLife(){
+  var html=backBar("生活之路 · 活出無己");
+  if(JV.idx<0){ html+='<p class="small muted" style="margin:0 2px 12px">把無己活進柴米油鹽——用心不用腦，凡事謝恩，焦點在耶穌。'+progTag(countTrue(S.life),5)+'</p>';
+    var i; for(i=0;i<LIFE.length;i++){ var done=!!S.life[i];
+      html+='<div class="land" onclick="openLife('+i+')"><div class="lnum" style="'+(done?"background:linear-gradient(150deg,#BF8F00,#E4B94B)":"background:linear-gradient(150deg,#3E7D5A,#5aa07a)")+'">'+(done?"\u2713":"\uD83C\uDFE1")+'</div>'+
+        '<div class="li"><b>'+LIFE[i][0]+'</b><span>'+(done?"已操練":"點此操練")+'</span></div><div class="lk">\u203A</div></div>'; }
+    $("screen-journey").innerHTML=html; return; }
+  var Li=LIFE[JV.idx], done=!!S.life[JV.idx];
+  html+='<div class="card"><span class="tag green">'+Li[0]+'</span>';
+  html+='<p style="font-size:19px;line-height:1.85;margin:12px 0 6px"><b style="color:var(--navy)">情境：</b>'+Li[1]+'</p>';
+  html+='<div style="background:var(--green-tint);border-radius:12px;padding:12px;margin:8px 0"><b style="color:var(--green);font-size:15px">怎麼活出無己</b><p style="font-size:18px;margin-top:3px">'+Li[2]+'</p></div>';
+  html+='<div style="font-family:var(--fdisplay);color:var(--navy);font-size:17px;text-align:center;margin:8px 0">「'+Li[3]+'」</div>';
+  if(!done) html+='<button class="btn gold" onclick="doLife('+JV.idx+')">我願這樣操練 \u2713</button>';
+  else html+='<div class="center"><span class="tag green">\u2713 已操練</span></div>';
+  html+='<button class="btn ghost" style="margin-top:10px" onclick="jback(\'life\')">回列表</button></div>';
+  $("screen-journey").innerHTML=html;
+}
+function openLife(i){ JV.idx=i; renderJourney(); }
+function doLife(i){ S.life[i]=true; commit(); toast("合一值 +6"); jback("life"); }
+
+/* ---- 關係之橋：七個得勝的金環 ---- */
+function ringsSVG(){
+  var r=15,gap=25,x0=24,cy=32,i,cx,s='<svg viewBox="0 0 200 64" style="width:100%;max-width:300px;height:auto;display:block;margin:2px auto 0">';
+  for(i=0;i<7;i++){ if(S.topics[i]) continue; cx=x0+i*gap;
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#DCD3CA" stroke-width="5"/>'; }
+  for(i=0;i<7;i++){ if(!S.topics[i]) continue; cx=x0+i*gap;
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="rgba(191,143,0,.14)" stroke="#BF8F00" stroke-width="5"/>'; }
+  for(i=0;i<7;i++){ cx=x0+i*gap;
+    s+='<text x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" font-size="12" font-weight="700" fill="'+(S.topics[i]?"#8a6a00":"#B7ADA3")+'">'+(i+1)+'</text>'; }
+  return s+'</svg>'; }
+function renderTopics(){
+  var html=backBar("關係之橋 · 七個得勝的金環");
+  if(JV.idx<0){
+    html+='<div class="verse-card" style="background:linear-gradient(140deg,#BF8F00,#8a5a2a)"><div class="vlabel" style="color:#FFE9B0">321 夫妻營 · 靠耶穌一定贏</div>'+
+      '<div class="vtext" style="font-size:19px">復興在於每一次的選擇。<br>七個金環，一環扣一環，環環相扣；<br>謙卑無己，就是那條得勝的金線。</div>'+ringsSVG()+
+      '<div class="center" style="margin-top:8px">'+progTag(countTrue(S.topics),7)+'</div></div>';
+    var i; for(i=0;i<TOPICS.length;i++){ var done=!!S.topics[i],T=TOPICS[i];
+      html+='<div class="land" onclick="openTopic('+i+')"><div class="lnum" style="'+(done?"background:linear-gradient(150deg,#BF8F00,#E4B94B);color:#3a2a00":"background:linear-gradient(150deg,#C9A227,#E4B94B);color:#3a2a00")+'">'+(done?"\u2713":"\uD83D\uDC8D")+'</div>'+
+        '<div class="li"><b>第'+["一","二","三","四","五","六","七"][i]+'個金環 · '+T[0]+'</b><span>'+T[1]+(done?"　\u2713 已扣上":"")+'</span></div><div class="lk">\u203A</div></div>'; }
+    $("screen-journey").innerHTML=html; return; }
+  var T=TOPICS[JV.idx], done=!!S.topics[JV.idx], num=["一","二","三","四","五","六","七"][JV.idx];
+  html+='<div class="verse-card" style="background:linear-gradient(140deg,#BF8F00,#B0345A)"><div class="vlabel" style="color:#FFE9B0">第 '+num+' 個得勝的金環</div>'+
+    '<div class="vtext" style="font-size:22px">'+T[0]+'</div><div style="font-size:17px;color:#FFE9B0;margin-top:6px;letter-spacing:.06em">'+T[1]+'</div>'+
+    '<div style="margin-top:10px;font-size:18px;line-height:1.7">「'+T[2]+'」</div></div>';
+  html+='<div class="card"><div class="eyebrow" style="margin:0 0 6px">真理回顧</div><ul style="margin:0 0 4px 2px;padding-left:16px">';
+  var i; for(i=0;i<T[3].length;i++){ html+='<li style="font-size:18px;line-height:1.75;margin-bottom:5px">'+T[3][i]+'</li>'; }
+  html+='</ul>';
+  html+='<div style="font-family:var(--fdisplay);color:var(--navy);font-size:17px;text-align:center;background:var(--gold-tint);border-radius:12px;padding:10px;margin:8px 0">「'+T[6]+'」</div>';
+  html+='<div style="background:var(--royal-tint);border-radius:12px;padding:12px;margin:12px 0"><b style="color:var(--royal);font-size:15px">\uD83D\uDCAC 夫妻分享題</b><p style="font-size:18px;margin-top:3px">'+T[4]+'</p></div>';
+  html+='<div style="background:var(--gold-tint);border-radius:12px;padding:12px;margin:8px 0"><b style="color:var(--gold);font-size:15px">\u2713 落實原則</b><p style="font-size:18px;margin-top:3px">'+T[5]+'</p></div>';
+  if(!done) html+='<button class="btn gold" onclick="doTopic('+JV.idx+')">選擇謙卑無己，扣上這個金環 \uD83D\uDC8D</button>';
+  else html+='<div class="center"><span class="tag green">\u2713 已扣上這個金環</span></div>';
+  html+='<button class="btn ghost" style="margin-top:10px" onclick="jback(\'topics\')">回金環列表</button></div>';
+  $("screen-journey").innerHTML=html;
+}
+function openTopic(i){ JV.idx=i; renderJourney(); }
+function doTopic(i){ S.topics[i]=true; commit();
+  var nx=-1,j; for(j=0;j<7;j++){ if(!S.topics[j]){ nx=j; break; } }
+  if(nx<0){ jback("topics"); toast("七個得勝的金環全數扣上！\uD83D\uDC8D"); } else { toast("金環已扣上！合一值 +12"); jback("topics"); } }
+
+/* ---- 使命之峰：235 繁殖門訓 五步 ---- */
+function renderMission(){
+  var step=Math.min(S.missionStep||0,5), html=backBar("使命之峰 · 繁殖門訓");
+  html+='<div class="center" style="margin-bottom:12px">'+progTag(step,5)+'</div>';
+  if(step>=5){
+    html+='<div class="verse-card" style="background:linear-gradient(140deg,#BF8F00,#B0345A)"><div class="vtext" style="font-size:19px">二人同心，成為別對夫妻的祝福；<br>建立屬神的體系，繁殖 235 戰隊，<br>迎接大復興，直到主再來。</div></div>';
+    html+='<div class="cov"><h3>\u265B 已登上使命之峰</h3><p class="small" style="color:var(--ink-soft)">你們願意被主差派，去複製這條謙卑無己的得勝之路。願神使用你們這一對，成為多對夫妻的祝福，繁殖神的國度。</p><div class="center" style="margin-top:8px"><span class="tag green">\u2713 已立志繁殖門訓</span></div></div>';
+    html+='<button class="btn" style="margin-top:6px" onclick="go(\'us\')">前往「我們」邀請一對夫妻加入 235 戰隊</button>';
+    html+='<div class="card"><div class="eyebrow" style="margin-bottom:8px">235 的五步</div>';
+    var i; for(i=0;i<MISSION.length;i++){ html+='<div class="deprow"><span class="tag gold">'+(i+1)+'</span><span>'+MISSION[i][0]+'</span></div>'; }
+    html+='</div>';
+    $("screen-journey").innerHTML=html; return;
+  }
+  var M=MISSION[step];
+  html+='<div class="card"><div class="center" style="margin-bottom:6px"><span class="tag gold">第 '+(step+1)+' 步 / 共 5 步</span></div>';
+  html+='<h3 style="font-family:var(--fdisplay);color:var(--rose);font-size:22px;text-align:center;margin:6px 0">'+M[0]+'</h3>';
+  html+='<p style="font-size:19px;line-height:1.9;margin:10px 0">'+M[1]+'</p>';
+  html+='<div style="font-family:var(--fdisplay);color:var(--navy);font-size:17px;background:var(--gold-tint);border-radius:12px;padding:14px;text-align:center;margin:10px 0">「'+M[2]+'」</div>';
+  html+='<button class="btn gold" style="margin-top:8px" onclick="stepMission()">'+M[3]+'</button></div>';
+  html+='<p class="small muted center">一步一步，讓得勝的生命繁殖、擴張神的國。</p>';
+  $("screen-journey").innerHTML=html;
+}
+function stepMission(){ S.missionStep=(S.missionStep||0)+1; if(S.missionStep>=5) S.mission=true; commit();
+  if(S.missionStep>=5) toast("願主差派、使用你們，繁殖神的國度！"); else toast("合一值 +6");
+  renderJourney(); window.scrollTo(0,0); }
+
+/* ---- 得勝者證書分享 ---- */
+function shareCert(){ var msg="\uD83C\uDFC6 得勝者證書\n"+S.h+" \u2665 "+S.w+"\n我們一同走過五重之地，二人成為一體，同作得勝者！\n合一值 "+S.score.one+"　·　同心 "+S.streak.n+" 天\n「靠著愛我們的主，已經得勝有餘了。」（羅 8:37）\n— 321 婚姻得勝者";
+  openShare("我們的得勝者證書", msg); }
+
+</script>
+<script>
+/* ===== 我們 · 牽線配對同步 · 牧者後台 ===== */
+var pastorAuth=false;
+
+/* ---------- 我們 ---------- */
+function renderUs(){
+  var html='<div class="eyebrow">我們的家 · 二人成為一體</div>';
+  /* 立約殿 */
+  html+='<div class="h-sec">二人立約殿</div>';
+  if(S.cov.date){
+    html+='<div class="cov"><h3>我們的盟約</h3><div class="small muted">立約日 '+esc(S.cov.date)+'</div>'+
+      '<div class="vow"><b style="color:var(--royal)">'+esc(S.h)+'：</b>\n'+esc(S.cov.h||"—")+'</div>'+
+      '<div class="vow"><b style="color:var(--rose)">'+esc(S.w)+'：</b>\n'+esc(S.cov.w||"—")+'</div>'+
+      '<button class="btn ghost" style="margin-top:10px" onclick="editCov()">重新立約</button></div>';
+  } else {
+    html+='<div class="card"><p class="small muted">寫下你們對神、對彼此的誓言，一同立約啟程。</p>'+
+      '<label class="fld">'+esc(S.h)+' 的誓言</label><textarea id="covH" rows="2" placeholder="例：我願為你捨己，讓耶穌在我們的家作王。"></textarea>'+
+      '<label class="fld">'+esc(S.w)+' 的誓言</label><textarea id="covW" rows="2" placeholder="例：我願敬重你、與你同心，凡事以基督為首。"></textarea>'+
+      '<button class="btn gold" style="margin-top:12px" onclick="saveCov()">簽署我們的盟約</button></div>';
+  }
+  /* 牽線配對同步 */
+  html+='<div class="h-sec">牽線配對同步</div><div class="card">'+
+    '<p class="small muted">各自一機也能同心！兩人交換「同步碼」，就能讓兩支手機的進度<strong style="color:var(--rose)">合而為一</strong>（各自完成的都會合併，分數不重複計算）。</p>'+
+    '<div class="small" style="margin-top:8px;color:var(--ink-soft)">配對碼：<b style="color:var(--royal);letter-spacing:.1em">'+esc(shortCid())+'</b></div>'+
+    '<button class="btn royal block" style="margin-top:12px" onclick="genSync()">產生我的同步碼 · 傳給另一半</button>'+
+    '<textarea id="syncOut" rows="2" readonly style="margin-top:10px;font-size:14px;color:var(--muted);display:none"></textarea>'+
+    '<label class="fld">貼上對方的同步碼，合併進度</label><textarea id="syncIn" rows="2" placeholder="貼上另一半分享的同步碼"></textarea>'+
+    '<button class="btn block" style="margin-top:10px" onclick="importSync()">匯入並合併</button></div>';
+  /* 兩人資料 */
+  html+='<div class="h-sec">兩人資料</div><div class="card">'+
+    '<label class="fld">丈夫暱稱</label><input id="edH" value="'+esc(S.h)+'" maxlength="12">'+
+    '<label class="fld">妻子暱稱</label><input id="edW" value="'+esc(S.w)+'" maxlength="12">'+
+    '<label class="fld">紀念日</label><input id="edA" type="date" value="'+esc(S.anniv)+'">'+
+    '<button class="btn royal" style="margin-top:12px" onclick="saveProfile()">儲存</button></div>';
+  /* 顯示設定 · 字級 */
+  var fsv=(S.fontScale||"m");
+  html+='<div class="h-sec">顯示設定</div><div class="card"><div class="small" style="font-weight:800;color:var(--navy);margin-bottom:8px">字級大小</div><div class="chips">'+
+    '<button class="chip'+(fsv=="s"?" on":"")+'" onclick="setFont(\'s\')">小</button>'+
+    '<button class="chip'+(fsv=="m"?" on":"")+'" onclick="setFont(\'m\')">中</button>'+
+    '<button class="chip'+(fsv=="l"?" on":"")+'" onclick="setFont(\'l\')">大</button>'+
+    '</div><p class="small muted" style="margin-top:8px">選「大」讓長輩看得更清楚；設定會自動記住。</p></div>';
+  /* 美圖底圖 */
+  var bmode=(S.bgMode||"color"), hasP=!!S.bgPhoto;
+  html+='<div class="card"><div class="small" style="font-weight:800;color:var(--navy);margin-bottom:8px">美圖底圖</div>'+
+    (hasP?'<img src="'+S.bgPhoto+'" style="width:100%;max-height:150px;object-fit:cover;border-radius:12px;margin-bottom:10px">':'')+
+    '<div class="chips" style="margin-bottom:10px">'+
+    '<button class="chip'+(bmode=="color"?" on":"")+'" onclick="setBgMode(\'color\')">預設漸層</button>'+
+    '<button class="chip'+(bmode=="photo"?" on":"")+'" onclick="setBgMode(\'photo\')">我們的合照</button></div>'+
+    '<input type="file" accept="image/*" id="bgFile" style="display:none" onchange="handleBgFile(this)">'+
+    '<button class="btn ghost block" onclick="document.getElementById(\'bgFile\').click()">上傳你們的合照</button>'+
+    (hasP?'<button class="btn ghost block" style="margin-top:8px" onclick="clearBg()">清除合照</button>':'')+
+    '<p class="small muted" style="margin-top:8px">合照會作為今日經文、今日行動、得勝者證書美圖的底圖，文字上會加柔和遮罩保持清楚。</p></div>';
+  /* 錄影背景音樂 */
+  var bgmOn=(S.bgm!==false), mst=(S.musicStyle||"pad");
+  html+='<div class="card"><div class="small" style="font-weight:800;color:var(--navy);margin-bottom:8px">錄影背景音樂</div><div class="chips">'+
+    '<button class="chip'+(bgmOn?" on":"")+'" onclick="setBgm(true)">開</button>'+
+    '<button class="chip'+(!bgmOn?" on":"")+'" onclick="setBgm(false)">關</button></div>'+
+    '<div class="small" style="font-weight:800;color:var(--navy);margin:12px 0 8px">音樂曲風</div><div class="chips">'+
+    '<button class="chip'+(mst=="pad"?" on":"")+'" onclick="setMusicStyle(\'pad\')">柔和</button>'+
+    '<button class="chip'+(mst=="piano"?" on":"")+'" onclick="setMusicStyle(\'piano\')">鋼琴</button>'+
+    '<button class="chip'+(mst=="strings"?" on":"")+'" onclick="setMusicStyle(\'strings\')">弦樂</button></div>'+
+    '<p class="small muted" style="margin-top:8px">錄「語音影片」時自動鋪上所選曲風的柔和音樂；錄製中也可即時開關。</p></div>';
+  /* 美圖名字/紀念日 */
+  var snOn=(S.showNames!==false);
+  html+='<div class="card"><div class="small" style="font-weight:800;color:var(--navy);margin-bottom:8px">美圖顯示名字 / 紀念日</div><div class="chips">'+
+    '<button class="chip'+(snOn?" on":"")+'" onclick="setShowNames(true)">顯示</button>'+
+    '<button class="chip'+(!snOn?" on":"")+'" onclick="setShowNames(false)">不顯示</button></div>'+
+    '<p class="small muted" style="margin-top:8px">開啟後，美圖底部會顯示「'+esc(S.h)+' \u2665 '+esc(S.w)+'」'+(S.anniv?('與紀念日 '+esc(S.anniv.split("-").join("."))):'（可到上方「兩人資料」填紀念日）')+'。</p></div>';
+  /* 牧養與體系 */
+  html+='<div class="h-sec">牧養與體系</div><div class="card">'+
+    '<button class="btn gold block" onclick="genReport()">產生給牧者的回報碼</button>'+
+    '<button class="btn ghost block" onclick="go(\'pastor\')">牧者後台（小家長 / 牧者）</button>'+
+    '<button class="btn block" onclick="invite()">邀請另一對夫妻加入 235 戰隊</button></div>';
+  /* 備份 */
+  html+='<div class="h-sec">資料備份</div><div class="card">'+
+    '<button class="btn ghost block" onclick="backup()">備份 / 匯出全部資料</button>'+
+    '<button class="btn ghost block" onclick="restore()">還原 / 匯入全部資料</button></div>';
+  html+='<div class="card"><div class="eyebrow" style="margin-bottom:6px">落實 321</div>'+
+    '<p class="small muted">三個基礎：耶穌是榜樣、聖經是準則、聖靈是引導。兩個核心：讓耶穌作王、讓耶穌得一切榮耀。一個目的：建立屬神的體系。<br><br>無己讓耶穌在裡面活，無己才能合一，無己才能得勝。願你們的家成為神國得勝的領土。</p></div>';
+  html+='<button class="btn ghost" style="color:var(--muted);box-shadow:inset 0 0 0 1.6px var(--line)" onclick="resetAll()">重新開始（清除資料）</button>';
+  html+='<p class="center small muted" style="margin-top:16px">國度 321 空中團契</p>';
+  $("screen-us").innerHTML=html;
+}
+function saveProfile(){ var h=$("edH").value.replace(/\s/g,""),w=$("edW").value.replace(/\s/g,"");
+  if(h) S.h=h; if(w) S.w=w; S.anniv=$("edA").value||""; save(); refreshBrand(); toast("已儲存"); renderUs(); }
+function saveCov(){ var h=$("covH").value,w=$("covW").value; if(!h&&!w){ toast("至少寫下一句誓言"); return; }
+  S.cov={ h:h, w:w, date:todayKey() }; save(); modal("\uD83D\uDCDC","盟約已立","願主耶穌記念你們的約，二人成為一體，愛情如死之堅強。","愛情，眾水不能息滅。（歌 8:7）"); renderUs(); }
+function editCov(){ S.cov.date=""; save(); renderUs(); }
+
+/* ---------- 編碼工具（UTF-8 安全 base64） ---------- */
+function b64enc(obj){ try{ return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))); }catch(e){ return JSON.stringify(obj); } }
+function b64dec(str){ try{ return JSON.parse(decodeURIComponent(escape(atob(str.replace(/\s/g,""))))); }
+  catch(e){ try{ return JSON.parse(str); }catch(e2){ return null; } } }
+function shortCid(){ return (S.coupleId||"").substr(0,6).toUpperCase(); }
+
+/* ---------- 牽線同步 ---------- */
+function genSync(){ var pk={ v:2, cid:S.coupleId, h:S.h, w:S.w, anniv:S.anniv,
+  days:S.days, bank:S.bank, battles:S.battles, lenses:S.lenses, rebirth:S.rebirth,
+  life:S.life, topics:S.topics, mission:S.mission, missionStep:S.missionStep, cov:S.cov };
+  var code="CW#"+b64enc(pk); var ta=$("syncOut"); ta.style.display="block"; ta.value=code;
+  var msg=S.h+" ♥ "+S.w+" 的同步碼（請對方在《321婚姻得勝者》→ 我們 → 牽線配對 貼上匯入）：\n"+code;
+  openShare("我的同步碼", msg); }
+function importSync(){ var raw=$("syncIn").value.replace(/^CW#/,"").replace(/\s/g,""); if(!raw){ toast("請先貼上對方的同步碼"); return; }
+  var inc=b64dec(raw); if(!inc||!inc.days){ toast("同步碼無法辨識，請確認完整貼上"); return; }
+  mergeState(inc); commit(); toast("已合併！兩人的進度合而為一 \u2665"); renderUs(); }
+function mergeState(inc){
+  if(!S.h && inc.h){ S.h=inc.h; S.w=inc.w; S.anniv=inc.anniv||""; S._started=true; }
+  if(inc.cid){ S.coupleId = (S.coupleId && S.coupleId<inc.cid) ? S.coupleId : inc.cid; }
+  var k; for(k in inc.days){ if(!inc.days.hasOwnProperty(k)) continue; var s=inc.days[k];
+    if(!S.days[k]) S.days[k]={ t920:{h:false,w:false}, prac:{} };
+    if(s.t920){ if(s.t920.h) S.days[k].t920.h=true; if(s.t920.w) S.days[k].t920.w=true; }
+    if(s.prac){ var pk; for(pk in s.prac){ if(s.prac[pk]) S.days[k].prac[pk]=true; } } }
+  var have={},i; for(i=0;i<S.bank.length;i++) have[S.bank[i].id]=1;
+  for(i=0;inc.bank&&i<inc.bank.length;i++){ if(!have[inc.bank[i].id]) S.bank.push(inc.bank[i]); }
+  var hb={}; for(i=0;i<S.battles.length;i++) hb[S.battles[i].id]=1;
+  for(i=0;inc.battles&&i<inc.battles.length;i++){ if(!hb[inc.battles[i].id]) S.battles.push(inc.battles[i]); }
+  for(k in inc.lenses){ if(inc.lenses[k]) S.lenses[k]=true; }
+  for(k in inc.life){ if(inc.life[k]) S.life[k]=true; }
+  for(k in inc.topics){ if(inc.topics[k]) S.topics[k]=true; }
+  if((inc.rebirth||0)>(S.rebirth||0)) S.rebirth=inc.rebirth;
+  if(inc.mission) S.mission=true;
+  if((inc.missionStep||0)>(S.missionStep||0)) S.missionStep=inc.missionStep;
+  if(inc.cov && inc.cov.date && (!S.cov.date || inc.cov.date>S.cov.date)) S.cov=inc.cov; }
+
+/* ---------- 回報碼 / 牧者後台 ---------- */
+function countLose(){ var i,c=0; for(i=0;i<S.battles.length;i++){ if(S.battles[i].out=="lose") c++; } return c; }
+function genReport(){ var r={ t:"rpt", cid:S.coupleId, h:S.h, w:S.w, one:S.score.one, streak:S.streak.n,
+  medals:countTrue(S.medals), lenses:countTrue(S.lenses), topics:countTrue(S.topics),
+  reborn:landDone("rebirth"), lose:countLose(), ts:todayKey() };
+  var code="CR#"+b64enc(r);
+  var msg="牧者您好，這是我們（"+S.h+" ♥ "+S.w+"）的近況回報碼，請在牧者後台匯入：\n"+code;
+  openShare("給牧者的回報碼", msg); }
+
+function pastor(){ if(!S.pastor) S.pastor={ pin:"", roster:[], followup:{} }; if(!S.pastor.followup) S.pastor.followup={}; return S.pastor; }
+function renderPastor(){
+  var P=pastor(), html='';
+  html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><button class="jbk" onclick="go(\'us\')">\u2039</button><div style="font-family:var(--fdisplay);font-weight:900;color:var(--navy);font-size:24px">牧者後台</div></div>';
+  if(!P.pin){
+    html+='<div class="card"><p class="small muted">首次進入，請設定 4 位數字密碼，保護所牧養夫妻的資料。</p><label class="fld">設定密碼</label><input id="pinSet" type="tel" maxlength="4" placeholder="4 位數字"><button class="btn royal" style="margin-top:12px" onclick="setPin()">設定並進入</button></div>';
+    $("screen-pastor").innerHTML=html; return; }
+  if(!pastorAuth){
+    html+='<div class="card"><p class="small muted">請輸入牧者密碼。</p><label class="fld">密碼</label><input id="pinIn" type="tel" maxlength="4" placeholder="4 位數字"><button class="btn royal" style="margin-top:12px" onclick="authPin()">進入</button></div>';
+    $("screen-pastor").innerHTML=html; return; }
+  /* 儀表板 */
+  var roster=P.roster.slice(0);
+  roster.sort(function(a,b){ var fa=careFlag(a)?0:1, fb=careFlag(b)?0:1; if(fa!=fb) return fa-fb; return b.one-a.one; });
+  html+='<div class="bankstat"><div class="b"><b>'+roster.length+'</b><span>牧養夫妻</span></div><div class="b"><b style="color:var(--gold)">'+careCount(roster)+'</b><span>需要關懷</span></div></div>';
+  html+='<div class="card"><label class="fld">匯入夫妻回報碼</label><textarea id="rptIn" rows="2" placeholder="貼上夫妻分享的回報碼（CR#...）"></textarea><button class="btn gold" style="margin-top:10px" onclick="importReport()">匯入 / 更新名冊</button></div>';
+  if(roster.length){ html+='<div class="h-sec">夫妻名冊</div>';
+    var i; for(i=0;i<roster.length;i++){ var c=roster[i], care=careFlag(c);
+      html+='<div class="card" style="padding:13px 15px'+(care?";border-color:var(--rose-soft);border-left:4px solid var(--rose)":"")+'">'+
+        '<div style="display:flex;align-items:center;gap:8px"><b style="font-size:18px;color:var(--navy);flex:1">'+esc(c.h)+' ♥ '+esc(c.w)+'</b>'+
+        (care?'<span class="tag rose">需要關懷</span>':'<span class="tag green">同心</span>')+'</div>'+
+        '<div class="small muted" style="margin-top:6px">合一值 <b style="color:var(--gold)">'+c.one+'</b>　·　同心 '+c.streak+' 天　·　獎章 '+c.medals+'　·　專題 '+(c.topics||0)+'/7'+(c.reborn?'　·　已重生':'')+'</div>'+
+        '<div class="small muted" style="margin-top:2px">回報於 '+esc(c.ts||"")+'</div></div>'; }
+    html+='<button class="btn ghost" style="margin-top:6px;color:var(--muted);box-shadow:inset 0 0 0 1.6px var(--line)" onclick="clearRoster()">清空名冊</button>'; }
+  else html+='<div class="card center muted small">名冊還是空的。請夫妻在「我們 → 產生給牧者的回報碼」把回報碼傳給你，貼上匯入即可。</div>';
+  /* 小家七次跟進 */
+  html+='<div class="h-sec">小家七次跟進</div><div class="card pad0" style="padding:6px 16px">';
+  var j; for(j=0;j<FOLLOWUP.length;j++){ var on=!!P.followup[j];
+    html+='<div class="task"><div class="ti"><span style="font-size:17px">'+FOLLOWUP[j]+'</span></div><div class="chk'+(on?" on":"")+'" onclick="toggleFup('+j+')">'+(on?"\u2713":"")+'</div></div>'; }
+  html+='</div>';
+  html+='<button class="btn ghost" style="margin-top:6px" onclick="pastorAuth=false;renderPastor()">鎖定後台</button>';
+  html+='<p class="center small muted" style="margin-top:14px">願主使用你，牧養每一對夫妻</p>';
+  $("screen-pastor").innerHTML=html;
+}
+function careFlag(c){ return c.streak===0 || (c.lose||0)>0; }
+function careCount(r){ var i,n=0; for(i=0;i<r.length;i++){ if(careFlag(r[i])) n++; } return n; }
+function setPin(){ var v=($("pinSet").value||"").replace(/\D/g,""); if(v.length!=4){ toast("請輸入 4 位數字"); return; }
+  pastor().pin=v; pastorAuth=true; save(); toast("密碼已設定"); renderPastor(); }
+function authPin(){ var v=($("pinIn").value||"").replace(/\D/g,""); if(v===pastor().pin){ pastorAuth=true; renderPastor(); } else toast("密碼不正確"); }
+function importReport(){ var raw=($("rptIn").value||"").replace(/^CR#/,"").replace(/\s/g,""); if(!raw){ toast("請貼上回報碼"); return; }
+  var r=b64dec(raw); if(!r||r.t!="rpt"||!r.cid){ toast("回報碼無法辨識"); return; }
+  var P=pastor(),i,found=-1; for(i=0;i<P.roster.length;i++){ if(P.roster[i].cid==r.cid){ found=i; break; } }
+  if(found>=0) P.roster[found]=r; else P.roster.push(r);
+  save(); toast("已更新名冊：" + r.h + " ♥ " + r.w); renderPastor(); }
+function clearRoster(){ if(confirm("確定清空整個名冊？")){ pastor().roster=[]; save(); renderPastor(); } }
+function toggleFup(j){ var P=pastor(); P.followup[j]=!P.followup[j]; save(); renderPastor(); }
+
+/* ---------- 備份 / 邀請 / 重置 ---------- */
+function backup(){ var txt=localStorage.getItem(KEY)||JSON.stringify(S); openShare("備份 / 匯出全部資料", txt); }
+function restore(){ var txt=prompt("貼上先前備份的完整資料："); if(!txt) return;
+  try{ var o=JSON.parse(txt); if(o&&o.days){ S=o; recompute(); grantMedals(false); save(); refreshBrand(); toast("已還原資料"); go("today"); } else toast("資料格式不正確"); }
+  catch(e){ toast("無法讀取，請確認貼上完整資料"); } }
+function invite(){ var url="https://spch321-sudo.github.io/321couples-win/",
+  msg="我們在用《321婚姻得勝者》一起操練無己、同心得勝，邀請你們這一對也加入我們的 235 戰隊！\n"+url;
+  openShare("邀請一對夫妻加入 235 戰隊", msg); }
+function resetAll(){ if(confirm("確定要清除所有資料、重新開始嗎？")){ localStorage.removeItem(KEY); S=fresh(); pastorAuth=false; applyFont();
+  $("brand").style.display="none"; $("nav").style.display="none";
+  var scr=document.getElementsByClassName("screen"),i; for(i=0;i<scr.length;i++) scr[i].className="screen";
+  $("screen-onb").className="screen on"; window.scrollTo(0,0); } }
+
+</script>
+<script>
+/* ===== 321 婚姻得勝者 · 分享 / 美圖 / 語音影片（ES5） ===== */
+var _shareText="", _shareFile=null, _poster=null, _vidFile=null, _rec=null, _bgImg=null;
+
+/* ---------- 自訂底圖（合照） ---------- */
+function loadBg(durl){ if(!durl){ _bgImg=null; return; } var im=new Image(); im.onload=function(){ _bgImg=im; }; im.onerror=function(){ _bgImg=null; }; im.src=durl; }
+function handleBgFile(input){ var f=input&&input.files&&input.files[0]; if(!f) return;
+  var rd=new FileReader(); rd.onload=function(e){ var im=new Image(); im.onload=function(){
+    var mx=1080,w=im.width,h=im.height,s=Math.min(1,mx/Math.max(w,h)),cw=Math.round(w*s),ch=Math.round(h*s);
+    var c=document.createElement("canvas"); c.width=cw; c.height=ch; c.getContext("2d").drawImage(im,0,0,cw,ch);
+    var durl; try{ durl=c.toDataURL("image/jpeg",0.82); }catch(err){ durl=c.toDataURL(); }
+    S.bgPhoto=durl; S.bgMode="photo"; _bgImg=im; try{ save(); }catch(err){}
+    toast("已設定為你們的合照 \u2665"); if(CUR=="us") renderUs(); };
+    im.onerror=function(){ toast("無法讀取這張圖片"); }; im.src=e.target.result; };
+  rd.readAsDataURL(f); }
+function setBgMode(m){ if(m=="photo" && !S.bgPhoto){ toast("請先上傳你們的合照"); return; } S.bgMode=m; save(); toast(m=="photo"?"美圖底圖：你們的合照":"美圖底圖：預設漸層"); if(CUR=="us") renderUs(); }
+function clearBg(){ S.bgPhoto=""; S.bgMode="color"; _bgImg=null; save(); toast("已清除合照"); if(CUR=="us") renderUs(); }
+
+/* ---------- 穩健分享（WebView 內也可用） ---------- */
+function openShare(title,text){ _shareText=text; $("shTitle").innerHTML=esc(title); $("shBox").value=text;
+  $("shNative").innerHTML = navigator.share ? '<button class="btn royal block" style="margin-bottom:8px" onclick="nativeShare()">系統分享…</button>' : '';
+  $("sharemodal").className="modal on"; setTimeout(function(){ var b=$("shBox"); if(b){ try{ b.focus(); b.select(); }catch(e){} } },80); }
+function copyShare(){ var b=$("shBox"); try{ b.focus(); b.select(); if(b.setSelectionRange) b.setSelectionRange(0,99999); var ok=document.execCommand("copy"); toast(ok?"已複製 \u2713":"請長按文字選取複製"); }catch(e){ toast("請長按文字選取複製"); } }
+function nativeShare(){ if(navigator.share){ navigator.share({ text:_shareText })["catch"](function(){}); } }
+function closeShare(){ $("sharemodal").className="modal"; }
+function tryCanShare(file){ try{ return !!(navigator.canShare && navigator.canShare({files:[file]})); }catch(e){ return false; } }
+
+/* ---------- 圖片視窗 ---------- */
+function openImg(url,file){ _shareFile=file; $("imImg").src=url; var dl=$("imDl"); dl.href=url;
+  if(_poster&&_poster.fname) dl.setAttribute("download",_poster.fname);
+  var h="";
+  if(file && tryCanShare(file)) h+='<button class="btn gold block" style="margin-bottom:8px" onclick="shareImgFile()">系統分享圖片…</button>';
+  if(canRecord()) h+='<button class="btn royal block" style="margin-bottom:8px" onclick="recordVideo()">錄成語音影片 \uD83C\uDFA5</button>';
+  $("imShare").innerHTML=h; $("imgmodal").className="modal on"; }
+function shareImgFile(){ if(_shareFile && navigator.share){ navigator.share({ files:[_shareFile], title:"321 婚姻得勝者", text:"321 婚姻得勝者" })["catch"](function(){}); } }
+function closeImg(){ $("imgmodal").className="modal"; }
+
+/* ---------- 美圖海報 ---------- */
+function wrapCJK(x,text,maxw){ var lines=[],cur="",i,ch,t;
+  for(i=0;i<text.length;i++){ ch=text.charAt(i); t=cur+ch;
+    if(x.measureText(t).width>maxw && cur){ lines.push(cur); cur=ch; } else cur=t; }
+  if(cur) lines.push(cur); return lines; }
+function posterCfg(kind){
+  if(kind=="action"){ var a=actionOfDay(); return { pal:["#1F3864","#3E7D5A","#2E4A7D"], label:"321 婚姻得勝者", label2:"今日行動 · 換觀點", heading:a[0], body:"\u2600 "+a[1], ref:a[2], stat:"", fname:"321-今日行動.png" }; }
+  if(kind=="cert"){ return { pal:["#8a5a12","#BF8F00","#B0345A"], label:"321 婚姻得勝者", label2:"得勝者證書", heading:S.h+" \u2665 "+S.w, body:"我們一同走過五重之地，二人成為一體，同作得勝者！", ref:"「靠著愛我們的主，已經得勝有餘了。」（羅 8:37）", stat:"合一值 "+S.score.one+"　·　同心 "+S.streak.n+" 天", fname:"321-得勝者證書.png", noCoupleBottom:true }; }
+  var v=todaysVerse(); return { pal:["#1F3864","#6a3a6e","#B0345A"], label:"國度 321 空中團契", label2:"今日經文", heading:"", body:"「"+v[0]+"」", ref:v[1], stat:"", fname:"321-今日經文.png" };
+}
+function coverDraw(x,img,W,H){ var iw=img.width,ih=img.height,s=Math.max(W/iw,H/ih),w=iw*s,h=ih*s;
+  x.drawImage(img,(W-w)/2,(H-h)/2,w,h); }
+function drawPoster(x,W,H,cfg){
+  if(S && S.bgMode=="photo" && _bgImg){
+    coverDraw(x,_bgImg,W,H);
+    var ov=x.createLinearGradient(0,0,0,H); ov.addColorStop(0,"rgba(18,14,32,.62)"); ov.addColorStop(.5,"rgba(28,18,46,.42)"); ov.addColorStop(1,"rgba(120,40,74,.66)");
+    x.fillStyle=ov; x.fillRect(0,0,W,H);
+  } else {
+    var g=x.createLinearGradient(0,0,W*0.35,H); g.addColorStop(0,cfg.pal[0]); g.addColorStop(.55,cfg.pal[1]); g.addColorStop(1,cfg.pal[2]);
+    x.fillStyle=g; x.fillRect(0,0,W,H);
+  }
+  x.strokeStyle="rgba(228,185,75,.85)"; x.lineWidth=4; x.strokeRect(46,46,W-92,H-92);
+  x.strokeStyle="rgba(228,185,75,.4)"; x.lineWidth=2; x.strokeRect(64,64,W-128,H-128);
+  x.textAlign="center";
+  x.fillStyle="#E4B94B"; x.font="bold 36px 'Noto Sans CJK TC','PingFang TC','Microsoft JhengHei',sans-serif"; x.fillText(cfg.label, W/2, 172);
+  x.font="600 30px 'Noto Sans CJK TC',sans-serif"; x.fillText(cfg.label2, W/2, 218);
+  x.fillStyle="#E4B94B"; x.font="46px serif"; x.fillText("\u2726", W/2, 300);
+  var L=cfg.body.length, fs=L>46?44:(L>30?52:60);
+  x.font="700 "+fs+"px 'Noto Serif CJK TC','Songti TC',serif";
+  var lines=wrapCJK(x,cfg.body,W-240), lh=fs*1.7, blockH=lines.length*lh;
+  var bodyTop=H/2-blockH/2+(cfg.heading?26:0), i;
+  if(cfg.heading){ x.fillStyle="#F0E9C0"; x.font="700 48px 'Noto Serif CJK TC','Songti TC',serif"; x.fillText(cfg.heading, W/2, bodyTop-70); }
+  x.fillStyle="#ffffff"; x.font="700 "+fs+"px 'Noto Serif CJK TC','Songti TC',serif";
+  for(i=0;i<lines.length;i++){ x.fillText(lines[i], W/2, bodyTop+i*lh); }
+  var afterY=bodyTop+blockH+40;
+  x.fillStyle="#E4B94B"; x.font="700 40px 'Noto Serif CJK TC','Songti TC',serif"; x.fillText(cfg.ref, W/2, afterY);
+  if(cfg.stat){ x.fillStyle="#F0E9C0"; x.font="600 34px 'Noto Sans CJK TC',sans-serif"; x.fillText(cfg.stat, W/2, afterY+56); }
+  var cx=W/2, cy=H-250;
+  x.lineWidth=11; x.strokeStyle="#5a79b0"; x.beginPath(); x.arc(cx-46,cy,46,0,Math.PI*2); x.stroke();
+  x.strokeStyle="#C0506E"; x.beginPath(); x.arc(cx+46,cy,46,0,Math.PI*2); x.stroke();
+  x.fillStyle="#E4B94B"; x.font="66px serif"; x.fillText("\u2665", cx, cy+24);
+  if(S && S.showNames!==false && !cfg.noCoupleBottom && S.h){ x.fillStyle="#F5ECC8"; x.font="600 40px 'Noto Sans CJK TC',sans-serif"; x.fillText(S.h+" \u2665 "+S.w, W/2, H-150); }
+  var foot="321 婚姻得勝者"; if(S && S.showNames!==false && S.anniv) foot=foot+"　·　"+annivText(S.anniv);
+  x.fillStyle="#F0E9C0"; x.font="600 28px 'Noto Sans CJK TC',sans-serif"; x.fillText(foot, W/2, H-96);
+}
+function annivText(a){ if(!a) return ""; var p=(""+a).split("-"); if(p.length<3) return ""+a; return "紀念日 "+p[0]+"."+p[1]+"."+p[2]; }
+function makePoster(kind){ var W=1080,H=1350,c=document.createElement("canvas"); c.width=W; c.height=H;
+  drawPoster(c.getContext("2d"),W,H,posterCfg(kind)); _poster={kind:kind,canvas:c,W:W,H:H,fname:posterCfg(kind).fname}; return c; }
+function shareImage(kind){ var c=makePoster(kind);
+  try{
+    if(c.toBlob){ c.toBlob(function(blob){ var url=URL.createObjectURL(blob),file=null;
+      try{ file=new File([blob],_poster.fname,{type:"image/png"}); }catch(e){} openImg(url,file); },"image/png"); }
+    else openImg(c.toDataURL("image/png"),null);
+  }catch(e){ openImg(c.toDataURL("image/png"),null); } }
+function shareVerseText(){ var v=todaysVerse(); openShare("今日經文","「"+v[0]+"」— "+v[1]+"\n（來自 321 婚姻得勝者）"); }
+
+/* ---------- 錄音成影片 ---------- */
+function canRecord(){ try{ return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder && document.createElement("canvas").captureStream); }catch(e){ return false; } }
+function pickMime(){ var c=["video/mp4","video/webm;codecs=vp8,opus","video/webm;codecs=vp9,opus","video/webm"],i;
+  for(i=0;i<c.length;i++){ try{ if(MediaRecorder.isTypeSupported(c[i])) return c[i]; }catch(e){} } return ""; }
+function recordVideo(){ if(!canRecord()){ toast("此裝置不支援錄影片，可改用美圖分享"); return; }
+  closeImg();
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(st){ startRec(st); })["catch"](function(){ toast("需要麥克風權限才能錄製"); }); }
+/* 柔和背景音樂（Web Audio 合成，可選曲風） */
+function makeMusic(actx,dest,style){
+  var master=actx.createGain(); master.gain.value=0; master.connect(dest);
+  var filter=actx.createBiquadFilter(); filter.type="lowpass"; filter.connect(master);
+  var chords=[[261.63,329.63,392.00],[293.66,349.63,440.00],[220.00,261.63,329.63],[246.94,311.13,392.00]];
+  var idx=0, oscs=[], timers=[], peak=0.075;
+  function rampIn(t){ try{ master.gain.setValueAtTime(0,actx.currentTime); master.gain.linearRampToValueAtTime(peak,actx.currentTime+t); }catch(e){ master.gain.value=peak; } }
+  if(style=="piano"){
+    peak=0.10; filter.frequency.value=2600; rampIn(0.6); var seq=0;
+    timers.push(setInterval(function(){ var c=chords[idx], note=[c[0],c[2],c[1],c[0]*2][seq%4], t=actx.currentTime;
+      var o=actx.createOscillator(); o.type="triangle"; var o2=actx.createOscillator(); o2.type="sine"; var g=actx.createGain();
+      o.connect(g); o2.connect(g); g.connect(filter); o.frequency.value=note; o2.frequency.value=note*2;
+      try{ g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.5,t+0.008); g.gain.exponentialRampToValueAtTime(0.0008,t+1.4); }catch(e){}
+      o.start(t); o2.start(t); o.stop(t+1.5); o2.stop(t+1.5); seq++; if(seq%4===0) idx=(idx+1)%chords.length; },620));
+  } else if(style=="strings"){
+    peak=0.06; filter.frequency.value=950;
+    var lfo=actx.createOscillator(); lfo.type="sine"; lfo.frequency.value=5; var lfoG=actx.createGain(); lfoG.gain.value=3; lfo.connect(lfoG); try{ lfo.start(); }catch(e){} oscs.push(lfo);
+    var i; for(i=0;i<3;i++){ var o=actx.createOscillator(); o.type="sawtooth"; var o2=actx.createOscillator(); o2.type="sawtooth"; try{ o2.detune.value=8; }catch(e){}
+      var g=actx.createGain(); g.gain.value=0.15; o.connect(g); o2.connect(g); g.connect(filter); try{ lfoG.connect(o.frequency); lfoG.connect(o2.frequency); }catch(e){}
+      try{ o.start(); o2.start(); }catch(e){} oscs.push(o); oscs.push(o2); }
+    function setChordS(c){ var j; for(j=0;j<3;j++){ try{ oscs[1+j*2].frequency.setTargetAtTime(c[j],actx.currentTime,1.2); oscs[2+j*2].frequency.setTargetAtTime(c[j],actx.currentTime,1.2); }catch(e){} } }
+    setChordS(chords[0]); rampIn(2.6);
+    timers.push(setInterval(function(){ idx=(idx+1)%chords.length; setChordS(chords[idx]); },4200));
+  } else {
+    peak=0.075; filter.frequency.value=1100;
+    var k; for(k=0;k<3;k++){ var oo=actx.createOscillator(); oo.type="sine"; var gg=actx.createGain(); gg.gain.value=0.32; oo.connect(gg); gg.connect(filter); try{ oo.start(); }catch(e){} oscs.push(oo); }
+    function setChordP(c){ var j; for(j=0;j<3;j++){ try{ oscs[j].frequency.setTargetAtTime(c[j],actx.currentTime,0.7); }catch(e){} } }
+    setChordP(chords[0]); rampIn(2.2);
+    timers.push(setInterval(function(){ idx=(idx+1)%chords.length; setChordP(chords[idx]); },3600));
+  }
+  return { gain:master, on:true, peak:peak, stop:function(){ var i; for(i=0;i<timers.length;i++) clearInterval(timers[i]); for(i=0;i<oscs.length;i++){ try{ oscs[i].stop(); }catch(e){} } } };
+}
+function setBgm(v){ if(S){ S.bgm=!!v; save(); } toast("錄影背景音樂："+(v?"開":"關")); if(CUR=="us") renderUs(); }
+function setMusicStyle(m){ if(S){ S.musicStyle=m; save(); } toast("音樂曲風："+(m=="piano"?"鋼琴":(m=="strings"?"弦樂":"柔和"))); if(CUR=="us") renderUs(); }
+function setShowNames(v){ if(S){ S.showNames=!!v; save(); } toast(v?"美圖將顯示名字/紀念日":"美圖不顯示名字"); if(CUR=="us") renderUs(); }
+function toggleBgm(){ if(!_rec||!_rec.music) return; var m=_rec.music; m.on=!m.on;
+  try{ m.gain.gain.setTargetAtTime(m.on?m.peak:0.0001,_rec.actx.currentTime,0.2); }catch(e){ m.gain.gain.value=m.on?m.peak:0; }
+  if(S){ S.bgm=m.on; save(); } var el=$("bgmBtn"); if(el) el.innerHTML="\uD83C\uDFB5 背景音樂："+(m.on?"開":"關"); }
+
+function startRec(mic){
+  var kind=(_poster&&_poster.kind)||"verse"; var base=makePoster(kind);
+  var cnv=$("recCanvas"); cnv.width=1080; cnv.height=1350; var x=cnv.getContext("2d");
+  _rec={ t0:Date.now(), mic:mic, chunks:[], raf:0, base:base, x:x, cnv:cnv, mr:null, mime:"", cancel:false };
+  function tick(){ var s=Math.floor((Date.now()-_rec.t0)/1000), mm=pad(Math.floor(s/60)), ss=pad(s%60), t=mm+":"+ss;
+    x.drawImage(_rec.base,0,0,1080,1350);
+    x.fillStyle="rgba(0,0,0,.4)"; x.fillRect(300,84,480,66);
+    x.beginPath(); x.fillStyle="#ff5a5a"; x.arc(346,117,15,0,Math.PI*2); x.fill();
+    x.fillStyle="#fff"; x.textAlign="left"; x.font="600 34px 'Noto Sans CJK TC',sans-serif"; x.fillText("錄製中  "+t,376,128); x.textAlign="center";
+    var rt=$("recTime"); if(rt) rt.innerHTML="\u25CF 錄製中 "+t;
+    _rec.raf=requestAnimationFrame(tick); }
+  tick();
+  var vs=cnv.captureStream(30), combined=new MediaStream(), i, vts=vs.getVideoTracks();
+  for(i=0;i<vts.length;i++) combined.addTrack(vts[i]);
+  /* 音訊：人聲 + 柔和背景音樂 混音 */
+  var actx=null, music=null, audioTrack=null;
+  try{
+    var AC=window.AudioContext||window.webkitAudioContext;
+    if(AC){ actx=new AC(); var dest=actx.createMediaStreamDestination();
+      var micSrc=actx.createMediaStreamSource(mic); micSrc.connect(dest);
+      music=makeMusic(actx,dest,(S&&S.musicStyle)||"pad"); music.on=(S&&S.bgm!==false);
+      if(!music.on){ try{ music.gain.gain.value=0.0001; }catch(e){} }
+      audioTrack=dest.stream.getAudioTracks()[0]; }
+  }catch(e){ actx=null; music=null; }
+  if(audioTrack) combined.addTrack(audioTrack);
+  else { var ats=mic.getAudioTracks(); for(i=0;i<ats.length;i++) combined.addTrack(ats[i]); }
+  _rec.actx=actx; _rec.music=music;
+  var mime=pickMime(); _rec.mime=mime||"video/webm";
+  try{ _rec.mr = mime ? new MediaRecorder(combined,{mimeType:mime}) : new MediaRecorder(combined); }
+  catch(e){ _rec.mr=new MediaRecorder(combined); }
+  _rec.mr.ondataavailable=function(e){ if(e.data&&e.data.size) _rec.chunks.push(e.data); };
+  _rec.mr.onstop=function(){ finishRec(); };
+  _rec.mr.start();
+  var bb=$("bgmBtn"); if(bb) bb.innerHTML="\uD83C\uDFB5 背景音樂："+((music&&music.on)?"開":"關");
+  $("recmodal").className="modal on";
+}
+function stopRec(){ if(_rec&&_rec.mr&&_rec.mr.state!="inactive"){ try{ _rec.mr.stop(); }catch(e){} } }
+function cancelRec(){ if(_rec){ _rec.cancel=true; try{ if(_rec.mr&&_rec.mr.state!="inactive") _rec.mr.stop(); }catch(e){} } $("recmodal").className="modal"; }
+function finishRec(){ if(!_rec) return; if(_rec.raf) cancelAnimationFrame(_rec.raf);
+  try{ if(_rec.music) _rec.music.stop(); }catch(e){}
+  try{ if(_rec.actx && _rec.actx.close) _rec.actx.close(); }catch(e){}
+  var i,tr=_rec.mic?_rec.mic.getTracks():[]; for(i=0;i<tr.length;i++){ try{ tr[i].stop(); }catch(e){} }
+  $("recmodal").className="modal";
+  if(_rec.cancel){ _rec=null; return; }
+  var blob=new Blob(_rec.chunks,{type:_rec.mime}); var mime=_rec.mime; _rec=null;
+  if(!blob.size){ toast("沒有錄到內容，請再試一次"); return; }
+  openVid(blob,mime); }
+function openVid(blob,mime){ var url=URL.createObjectURL(blob), ext=(mime.indexOf("mp4")>=0)?".mp4":".webm";
+  var name=((_poster&&_poster.fname)?_poster.fname.replace(".png",""):"321-影片")+ext;
+  _vidFile=null; try{ _vidFile=new File([blob],name,{type:blob.type}); }catch(e){}
+  $("vidVideo").src=url; var dl=$("vidDl"); dl.href=url; dl.setAttribute("download",name);
+  $("vidShare").innerHTML=(_vidFile && tryCanShare(_vidFile)) ? '<button class="btn gold block" style="margin-bottom:8px" onclick="shareVidFile()">系統分享影片…</button>' : '';
+  $("vidmodal").className="modal on"; }
+function shareVidFile(){ if(_vidFile && navigator.share){ navigator.share({ files:[_vidFile], title:"321 婚姻得勝者", text:"321 婚姻得勝者" })["catch"](function(){}); } }
+function closeVid(){ var v=$("vidVideo"); try{ v.pause(); }catch(e){} $("vidmodal").className="modal"; }
+
+/* ---------- 啟動 ---------- */
+boot();
+
+</script>
+</body>
+</html>
