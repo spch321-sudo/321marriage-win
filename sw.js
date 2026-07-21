@@ -1,6 +1,6 @@
 /* 321 婚姻得勝者 Service Worker */
-var CACHE = "cw321-v26";
-var ASSETS = ["./","./index.html","./manifest.webmanifest","./icon-192-v2.png","./icon-512-v2.png","./icon-512-maskable-v2.png","./icon-180-v2.png","./favicon-32-v2.png"];
+var CACHE = "cw321-v28";
+var ASSETS = ["./","./index.html","./manifest.webmanifest","./icon-192-v3.png","./icon-512-v3.png","./icon-512-maskable-v3.png","./icon-180-v3.png","./favicon-32-v3.png"];
 self.addEventListener("install", function(e){ self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(function(c){ return c.addAll(ASSETS); })); });
 self.addEventListener("activate", function(e){
