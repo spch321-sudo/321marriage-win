@@ -1,5 +1,5 @@
 /* 321 婚姻得勝者 Service Worker */
-var CACHE = "cw321-v15";
+var CACHE = "cw321-v20";
 var ASSETS = ["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./icon-512-maskable.png","./icon-180.png","./favicon-32.png"];
 self.addEventListener("install", function(e){ self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(function(c){ return c.addAll(ASSETS); })); });
